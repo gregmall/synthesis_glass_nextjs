@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useMemo, useCallback, memo } from 'react'
 import { Button, Input } from "@material-tailwind/react"
 import { db } from '../../config/Config';
-import { Link } from 'react-router-dom';
+import { Link, useSearchParams } from 'react-router-dom';
 import { Vortex } from 'react-loader-spinner';
 
 const PAGE_SIZE = 20;
@@ -31,19 +31,30 @@ const Glass = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [items, setItems] = useState([]);
-  const [filtered, setFiltered] = useState('');
-  const [page, setPage] = useState(1);
-  const [searchTerm, setSearchTerm] = useState('');
+  const [searchParams, setSearchParams] = useSearchParams();
+
+  const filtered = searchParams.get('filter') ?? '';
+  const searchTerm = searchParams.get('search') ?? '';
+  const page = parseInt(searchParams.get('page') ?? '1', 10);
+
+  const setParam = useCallback((updates) => {
+    setSearchParams(prev => {
+      const next = new URLSearchParams(prev);
+      Object.entries(updates).forEach(([k, v]) => {
+        if (v === '' || v === null || v === undefined) next.delete(k);
+        else next.set(k, String(v));
+      });
+      return next;
+    }, { replace: true });
+  }, [setSearchParams]);
 
   const onSearchChange = useCallback((e) => {
-    setSearchTerm(e.target.value);
-    setPage(1);
-  }, []);
+    setParam({ search: e.target.value, page: null });
+  }, [setParam]);
 
   const handleFilterChange = useCallback((value) => {
-    setFiltered(value);
-    setPage(1);
-  }, []);
+    setParam({ filter: value, page: null });
+  }, [setParam]);
 
   useEffect(() => {
     const getItems = async () => {
@@ -63,8 +74,8 @@ const Glass = () => {
     const search = searchTerm.toLowerCase();
     return items.filter(item => {
       const matchesSearch = !search ||
-        item.ProductName.toLowerCase().includes(search) ||
-        item.ProductDescription.toLowerCase().includes(search);
+        item.ProductName?.toLowerCase().includes(search) ||
+        item.ProductDescription?.toLowerCase().includes(search);
       const matchesType = !filtered || item?.Type === filtered;
       return matchesSearch && matchesType;
     });
@@ -80,7 +91,7 @@ const Glass = () => {
   return (
     <>
       <div className='w-72 flex-col items-center justify-center mx-auto mt-10 mb-10 text-color-black bg-white rounded-lg p-1'>
-        <Input label="Search items..." value={searchTerm} placeholder="Search by type, color, theme, etc..."onChange={onSearchChange} />
+        <Input label="Search items..." value={searchTerm} placeholder="Search by type, color, theme, etc..." onChange={onSearchChange} />
       </div>
       <div
         style={{
@@ -127,11 +138,11 @@ const Glass = () => {
       </div>
       {!loading && totalPages > 1 && (
         <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', gap: '8px', margin: '30px 0' }}>
-          <Button color="blue" disabled={page === 1} onClick={() => setPage(p => p - 1)}>
+          <Button color="blue" disabled={page === 1} onClick={() => setParam({ page: page - 1 })}>
             Prev
           </Button>
           <span style={{ color: 'white' }}>Page {page} of {totalPages}</span>
-          <Button color="blue" disabled={page === totalPages} onClick={() => setPage(p => p + 1)}>
+          <Button color="blue" disabled={page === totalPages} onClick={() => setParam({ page: page + 1 })}>
             Next
           </Button>
         </div>
