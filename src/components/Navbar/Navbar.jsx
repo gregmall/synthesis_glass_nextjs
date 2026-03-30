@@ -30,7 +30,7 @@ const Navbar = () => {
   const [mobileOpen, setMobileOpen] = useState(false)
   const navigate = useNavigate()
   let isAdmin = false
-  
+  console.log(isAdmin)
   try {
     const stored = JSON.parse(localStorage.getItem('user'))
     
