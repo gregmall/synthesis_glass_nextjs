@@ -1,7 +1,33 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, useCallback } from 'react'
 import { db } from '../../config/Config';
 import { useLocation } from 'react-router-dom';
 import { Confirm } from 'notiflix/build/notiflix-confirm-aio';
+
+function CustomerCard({ customer, onComplete }) {
+  return (
+    <React.Fragment>
+      <div>Name: {customer.name}</div>
+      <div>Email: <a href={`mailto:${customer.email}`} className='text-blue-500 font-bold'>{customer.email}</a></div>
+      <div>Last Order: {customer.history ? new Date(customer.history.timestamp).toLocaleDateString() : 'No orders yet'}</div>
+      {customer.history?.items.map((item, idx) => (
+        <div key={idx} className='flex flex-col'>
+          <div className='w-1/2'>{item.name}</div>
+          <div className='w-1/4'><img src={item.image[0]} alt={item.name} className='w-16 h-16 object-cover' /></div>
+        </div>
+      ))}
+      <div>Total: ${customer.history ? customer.history.total : '0'}</div>
+      <div>Message: {customer.message}</div>
+      <div>Address: {customer.address.street}</div>
+      <div>City: {customer.address.city}</div>
+      <div>State: {customer.address.state}</div>
+      <div>Zip: {customer.address.zip}</div>
+      <div className='border-b-2 mb-8 text-teal-500 flex items-center justify-between'>
+        <a href={customer.stripeLink} rel='noopener noreferrer' target='_blank'>Link to Payment</a>
+        <button className='ml-4 px-2 py-1 mb-2 bg-green-500 text-white rounded' onClick={() => onComplete(customer)}>Complete Order</button>
+      </div>
+    </React.Fragment>
+  );
+}
 
 export default function Customers() {
   const [customers, setCustomers] = useState([]);
@@ -9,6 +35,7 @@ export default function Customers() {
   const [error, setError] = useState(null);
   const { state } = useLocation();
   const users = state?.users;
+
   useEffect(() => {
     if (!users) {
       setLoading(false);
@@ -23,7 +50,7 @@ export default function Customers() {
         const matched = filtered.reduce((acc, doc) => {
           const user = userMap.get(doc.id);
           if (user && user.history?.[0]?.completed !== true) {
-            acc.push({ id: doc.id, ...doc.data(), name: user.name, address: user.shippingAddress, history: user.history?.[0] ?? null });
+            acc.push({ id: doc.id, ...doc.data(), name: user.name, message: user.cartMessage, address: user.shippingAddress, history: user.history?.[0] ?? null });
           }
           return acc;
         }, []);
@@ -43,7 +70,8 @@ export default function Customers() {
 
     fetchCustomers();
   }, [users]);
-  const handleClick = (customer) => {
+
+  const handleClick = useCallback((customer) => {
     const order = {
       name: customer.name,
       date: customer.history ? new Date(customer.history.timestamp).toLocaleDateString() : 'No orders yet',
@@ -53,7 +81,8 @@ export default function Customers() {
       total: customer.history?.total,
       address: customer.address,
       stripeLink: customer.stripeLink,
-      dateCompleted: new Date().toLocaleDateString() 
+      message: customer.message,
+      dateCompleted: new Date().toLocaleDateString()
     };
 
     Confirm.show(
@@ -81,14 +110,13 @@ export default function Customers() {
         }
       }
     );
-  };
+  }, []);
 
   return (
     <div className='flex justify-center mt-10'>
       <div className='p-4 w-full max-w-lg bg-white rounded-md'>
         <h1 className='mt-4 text-4xl text-center'>Customers</h1>
-        <h3 className='text-center text-gray-500 mb-6 border-b-2'>Open Orders</h3>  
-       
+        <h3 className='text-center text-gray-500 mb-6 border-b-2'>Open Orders</h3>
 
         {loading ? (
           <p className='text-center mt-4'>Loading...</p>
@@ -100,26 +128,7 @@ export default function Customers() {
           <p className='text-center mt-4'>No open orders found.</p>
         ) : (
           customers.map(customer => (
-            <React.Fragment key={customer.id}>
-              <div>Name: {customer.name}</div>
-              <div>Email: <a href={`mailto:${customer.email}`} className='text-blue-500 font-bold'>{customer.email}</a></div>
-              <div >Last Order: {customer.history ? new Date(customer.history.timestamp).toLocaleDateString() : 'No orders yet'}</div>
-              {customer.history?.items.map((item, idx) => (
-                <div key={idx} className='flex flex-col'>
-                  <div className='w-1/2'>{item.name}</div>
-                  <div className='w-1/4'><img src={item.image[0]} alt={item.name} className='w-16 h-16 object-cover'/></div>
-                </div>
-              ))} 
-              <div>Total: ${customer.history ? customer.history.total : '0'}</div>
-              <div>Address: {customer.address.street}</div>
-              <div>City: {customer.address.city}</div>
-              <div>State: {customer.address.state}</div>
-              <div>Zip: {customer.address.zip}</div> 
-              <div className='border-b-2 mb-8 text-teal-500 flex items-center justify-between'>
-                <a href={customer.stripeLink} rel='noopener noreferrer' target='_blank'>Link to Payment</a>
-                <button className='ml-4 px-2 py-1 mb-2 bg-green-500 text-white rounded' onClick={() => handleClick(customer)}>Complete Order</button>
-              </div>
-            </React.Fragment>
+            <CustomerCard key={customer.id} customer={customer} onComplete={handleClick} />
           ))
         )}
       </div>

@@ -26,11 +26,11 @@ const NavLink = ({ to, label, external, className, toggleMobile }) => (
 
 const Navbar = () => {
   const { user } = useContext(UserContext)
-  console.log(user)
+
   const [mobileOpen, setMobileOpen] = useState(false)
   const navigate = useNavigate()
   let isAdmin = false
-  console.log(isAdmin)
+ 
   try {
     const stored = JSON.parse(localStorage.getItem('user'))
     
@@ -52,9 +52,11 @@ const Navbar = () => {
   }, [])
 
   return (
-    <div className='text-white flex justify-between item-center h-24 mx-auto px-4 sticky top-0 bg-gradient-to-r from-[#762a99] to-[#7c0747] bg-no-repeat z-50'>
+    <>
+    <div className='text-white  item-center h-25 mx-auto px-4 sticky top-0 bg-gradient-to-r from-[#762a99] to-[#7c0747] bg-no-repeat z-50'>
+      <div className="flex justify-between">
       <div className="header">
-        <h1 className="logo">Synthesis Glass</h1>
+        <Link to="/"><h1 className="logo">Synthesis Glass</h1></Link>
       </div>
       <ul className='hidden md:flex'>
         {user?
@@ -110,7 +112,13 @@ const Navbar = () => {
           </li>
         </ul>
       </div>
+      </div>
+      <div className="text-center text-sm text-white ">
+        <span className="header">Free shipping in the US!</span>
+      </div>
     </div>
+  
+    </>
   )
 }
 

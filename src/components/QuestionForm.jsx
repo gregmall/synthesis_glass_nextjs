@@ -116,7 +116,7 @@ import {
         </div>
         <Typography color="gray" className="mt-4 text-center font-normal">
           Prefer to email?{" "}
-          <a href="mailto:synthesisglass@gmail.com?subject=Hi! I have an inquiry regarding your glass work..."  className='text-blue-500 font-bold'>Click Here</a>
+          <a href="mailto:greg@synthesisglass.com?subject=Hi! I have an inquiry regarding your glass work..."  className='text-blue-500 font-bold'>Click Here</a>
         </Typography>
       </form>
     </Card>

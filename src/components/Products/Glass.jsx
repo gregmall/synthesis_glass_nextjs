@@ -90,7 +90,7 @@ const Glass = () => {
 
   return (
     <>
-       <div className='text-center  text-white text-2xl font-bold'>
+       <div className='text-center  text-white text-2xl font-bold mt-5'>
         All pieces made to order
       </div>  
       <div className='text-center  text-white  font-bold'>

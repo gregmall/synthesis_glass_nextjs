@@ -29,6 +29,7 @@ const ShoppingCart = () => {
   const [zip, setZip] = useState();   
   const [apartment, setApartment] = useState();
   const [showCheckout, setShowCheckout] = useState(false);
+  const [cartMessage, setCartMessage] = useState('');
  
     const calculateTotal = () => {
       
@@ -71,6 +72,7 @@ useEffect(() => {
         setState(array?.shippingAddress?.state || '');
         setZip(array?.shippingAddress?.zip || '');    
         setCartItems(cart || []);
+        setCartMessage(array?.cartMessage || '');
         
         let sum = 0;
         for (let i = 0; i < cart?.length; i++) {
@@ -199,7 +201,8 @@ useEffect(() => {
       apartment: apartment
     }
       await db.collection('users').doc(user.uid).update({
-        shippingAddress: array
+        shippingAddress: array,
+        cartMessage: cartMessage
       }).then(()=>{
         setShowCheckout(true);
         setLoading(false);
@@ -238,8 +241,21 @@ useEffect(() => {
         
            
               <div className='flex-col max-w-sm rounded overflow-hidden shadow-lg bg-slate-50 mx-3 my-3 justify-center items-center text-center p-4'>
-                <div className='font-bold border-t my-2'>Total: ${calculateTotal().toFixed(2)}</div>
-                <button className='bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline'disabled={loading || !user} onClick={()=>setShowForm(!showForm)}>Checkout</button>
+                <div className='font-bold border-b my-2'>Total: ${calculateTotal().toFixed(2)}</div>
+                <Typography variant="h6" color="blue-gray" className="mb-3">
+                  Checkout Message
+                </Typography>
+                <Input
+                    size="lg"
+                    type="text"
+                    placeholder={cartMessage || 'Add a note to your order (optional)'}
+                    className=" !border-t-blue-gray-200 focus:!border-t-gray-900 mb-2"
+                    onChange={(e)=> setCartMessage(e.target.value)} value={cartMessage}
+                    labelProps={{
+                      className: "before:content-none after:content-none",
+                    }}
+                    />
+                <button className='bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 mt-2 rounded focus:outline-none focus:shadow-outline'disabled={loading || !user} onClick={()=>setShowForm(!showForm)}>Checkout</button>
               </div>
            
        </div>

@@ -38,6 +38,7 @@ export default function CompletedOrders() {
                   <div className='w-1/2'>{item.name}</div>
                   <div className='w-1/4'><img src={item.image[0]} alt={item.name} className='w-16 h-16 object-cover'/></div>
                   <div className='w-1/4'>Price: ${item.price.toFixed(2)}</div>
+                  <div className='w-full'>Message: {order.message}</div>
                 </div>
               ))}
               <p >Total: ${order.total}</p>
