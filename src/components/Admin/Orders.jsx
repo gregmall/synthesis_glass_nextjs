@@ -1,6 +1,7 @@
+'use client'
 import React, { useEffect, useState, useCallback } from 'react'
 import { db } from '../../config/Config';
-import { useLocation } from 'react-router-dom';
+import { useSearchParams } from 'next/navigation';
 import { Confirm } from 'notiflix/build/notiflix-confirm-aio';
 
 function CustomerCard({ customer, onComplete }) {
@@ -33,8 +34,10 @@ export default function Customers() {
   const [customers, setCustomers] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-  const { state } = useLocation();
-  const users = state?.users;
+  const searchParams = useSearchParams();
+
+  const usersParam = searchParams.get('users');
+  const users = usersParam ? JSON.parse(usersParam) : null;
 
   useEffect(() => {
     if (!users) {
@@ -69,7 +72,8 @@ export default function Customers() {
     };
 
     fetchCustomers();
-  }, [users]);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [usersParam]);
 
   const handleClick = useCallback((customer) => {
     const order = {

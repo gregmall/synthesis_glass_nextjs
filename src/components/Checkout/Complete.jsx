@@ -1,7 +1,8 @@
+'use client'
 import { useContext, useEffect, useRef } from 'react'
 import { UserContext } from '../../context/UserContextProvider'
 import { db } from '../../config/Config';
-import { Link } from 'react-router-dom';
+import Link from 'next/link'
 import { Button } from '@material-tailwind/react';
 
 export default function Complete() {
@@ -30,13 +31,14 @@ export default function Complete() {
   }, [user?.id, user?.cart, user?.history]);
 
   return (
-    <div className='flex justify-center '>
+    <div className='flex justify-center'>
       <div className='max-w-sm rounded overflow-hidden shadow-lg w-full bg-slate-50 mx-3 my-3 p-5'>
-    <div className='text-3xl my-2'>Thanks for your order!</div> 
-    <div>Please allow 2-4 days for processing.  You will be emailed tracking when your order has been shipped</div>
-    <Button variant="gradient" className='mt-5 ' color="blue" fullWidth>   <Link to='/'>Back to Home</Link></Button>
+        <div className='text-3xl my-2'>Thanks for your order!</div>
+        <div>Please allow 2-4 days for processing. You will be emailed tracking when your order has been shipped</div>
+        <Button variant="gradient" className='mt-5' color="blue" fullWidth>
+          <Link href='/'>Back to Home</Link>
+        </Button>
+      </div>
     </div>
-    </div>
-
   )
 }

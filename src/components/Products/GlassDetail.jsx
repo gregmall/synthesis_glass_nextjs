@@ -1,5 +1,6 @@
+'use client'
 import { useEffect, useState, useContext } from 'react'
-import { useParams, useNavigate } from 'react-router-dom'
+import { useParams, useRouter } from 'next/navigation'
 import { db } from '../../config/Config';
 import { Vortex } from 'react-loader-spinner';
 import { UserContext } from '../../context/UserContextProvider';
@@ -10,7 +11,7 @@ const BTN_CLASS = 'my-4 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 
 const GlassDetail = () => {
     const params = useParams();
     const { user } = useContext(UserContext);
-    const navigate = useNavigate();
+    const router = useRouter();
     const [item, setItem] = useState();
     const [loading, setLoading] = useState(true);
     const [images, setImages] = useState([]);
@@ -35,19 +36,19 @@ const GlassDetail = () => {
                     });
                 } else {
                     Notiflix.Notify.failure('Product not found!');
-                    navigate('/glass');
+                    router.push('/glass');
                 }
             } catch (error) {
                 console.error('Error fetching product:', error);
                 Notiflix.Notify.failure('An error occurred while fetching the product.');
-                navigate('/glass');
+                router.push('/glass');
             } finally {
                 setLoading(false);
             }
         };
 
         getItem();
-    }, [params.id, navigate]);
+    }, [params.id, router]);
 
     const handleClick = async (item) => {
         setAdding(true);
@@ -56,7 +57,7 @@ const GlassDetail = () => {
                 cart: [...(user.cart || []), { id: params.id, name: item.title, image: item.image, price: item.price }]
             });
             Notiflix.Notify.success(`${item.title} added to shopping cart!`);
-            navigate(-1);
+            router.back();
         } catch (error) {
             console.error('Error adding to cart:', error);
             Notiflix.Notify.failure('An error occurred while adding the item to the cart.');
@@ -102,9 +103,9 @@ const GlassDetail = () => {
                                 ? <button className={BTN_CLASS} disabled={adding} onClick={() => handleClick(item)}>
                                     {adding ? 'Adding...' : 'Add to cart!'}
                                   </button>
-                                : <button className={BTN_CLASS} onClick={() => navigate('/signin')}>Sign in to purchase!</button>
+                                : <button className={BTN_CLASS} onClick={() => router.push('/signin')}>Sign in to purchase!</button>
                             }
-                            <button className={BTN_CLASS} onClick={() => navigate(-1)}>Back</button>
+                            <button className={BTN_CLASS} onClick={() => router.back()}>Back</button>
                         </div>
                     </div>
                 </div>

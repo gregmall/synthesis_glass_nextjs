@@ -1,6 +1,7 @@
+'use client'
 import React, { useState } from 'react'
 import { storage, db } from '../../config/Config'
-import { useNavigate } from 'react-router-dom'
+import { useRouter } from 'next/navigation'
 import { Notify } from 'notiflix'
 import { Textarea, Spinner } from "@material-tailwind/react"
 
@@ -12,7 +13,7 @@ const AddProduct = () => {
     const [images, setImages] = useState([]);
     const [loading, setLoading] = useState(false);
 
-    const navigate = useNavigate();
+    const router = useRouter();
 
     const addProduct = async (e) => {
         setLoading(true);
@@ -27,7 +28,6 @@ const AddProduct = () => {
 
             const imageUrls = await Promise.all(promises);
 
-            // Create a new product object
             const newProduct = {
                 ProductDescription: description,
                 ProductImage: imageUrls,
@@ -36,11 +36,10 @@ const AddProduct = () => {
                 Type: type,
             };
 
-            // Add the product to the Firestore collection
             await productsRef.add(newProduct).then(() => {
                 setLoading(false);
                 Notify.success("ADDED!");
-                navigate('/glass');
+                router.push('/glass');
             });
 
             console.log('Product uploaded successfully');
@@ -105,7 +104,7 @@ const AddProduct = () => {
                     <select onChange={(e) => setType(e.target.value)}>
                         <option value="pipe">pipe</option>
                         <option value="chillum">chillum</option>
-                        <option value="bowl">bowl</option>  
+                        <option value="bowl">bowl</option>
                     </select>
                     <br />
                     {loading ? (

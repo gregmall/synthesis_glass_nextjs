@@ -1,7 +1,9 @@
+'use client'
 import React, { useState, useEffect, useMemo, useCallback, memo } from 'react'
 import { Button, Input } from "@material-tailwind/react"
 import { db } from '../../config/Config';
-import { Link, useSearchParams } from 'react-router-dom';
+import Link from 'next/link'
+import { useRouter, useSearchParams } from 'next/navigation';
 import { Vortex } from 'react-loader-spinner';
 
 const PAGE_SIZE = 20;
@@ -16,7 +18,7 @@ const FILTER_OPTIONS = [
 const VORTEX_COLORS = ['red', 'green', 'blue', 'yellow', 'orange', 'purple', 'white'];
 
 const GlassCard = memo(({ item }) => (
-  <Link to={`/item/${item.ID}`}>
+  <Link href={`/item/${item.ID}`}>
     <div className='max-w-sm rounded overflow-hidden shadow-lg bg-slate-50 mx-3 my-3 hover:bg-fuchsia-400 ease-in-out duration-100'>
       <img className='w-full p-4 rounded' src={item.ProductImage} alt={item.ProductName} loading="lazy" />
       <div className='px-6 py-4'>
@@ -31,22 +33,21 @@ const Glass = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [items, setItems] = useState([]);
-  const [searchParams, setSearchParams] = useSearchParams();
+  const router = useRouter();
+  const searchParams = useSearchParams();
 
   const filtered = searchParams.get('filter') ?? '';
   const searchTerm = searchParams.get('search') ?? '';
   const page = parseInt(searchParams.get('page') ?? '1', 10);
 
   const setParam = useCallback((updates) => {
-    setSearchParams(prev => {
-      const next = new URLSearchParams(prev);
-      Object.entries(updates).forEach(([k, v]) => {
-        if (v === '' || v === null || v === undefined) next.delete(k);
-        else next.set(k, String(v));
-      });
-      return next;
-    }, { replace: true });
-  }, [setSearchParams]);
+    const next = new URLSearchParams(searchParams.toString());
+    Object.entries(updates).forEach(([k, v]) => {
+      if (v === '' || v === null || v === undefined) next.delete(k);
+      else next.set(k, String(v));
+    });
+    router.replace(`/glass?${next.toString()}`);
+  }, [router, searchParams]);
 
   const onSearchChange = useCallback((e) => {
     setParam({ search: e.target.value, page: null });
@@ -90,12 +91,12 @@ const Glass = () => {
 
   return (
     <>
-       <div className='text-center  text-white text-2xl font-bold mt-5'>
+      <div className='text-center text-white text-2xl font-bold mt-5'>
         All pieces made to order
-      </div>  
-      <div className='text-center  text-white  font-bold'>
+      </div>
+      <div className='text-center text-white font-bold'>
         Inquire about any customizations
-      </div>  
+      </div>
       <div className='w-72 flex-col items-center justify-center mx-auto mt-5 mb-10 text-color-black bg-white rounded-lg p-1'>
         <Input label="Search items..." value={searchTerm} placeholder="Search by type, color, theme, etc..." onChange={onSearchChange} />
       </div>
