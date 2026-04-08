@@ -1,6 +1,8 @@
 {
-  "/page": "app/page.js",
   "/glass/page": "app/glass/page.js",
   "/account/[id]/page": "app/account/[id]/page.js",
-  "/cart/page": "app/cart/page.js"
+  "/item/[id]/page": "app/item/[id]/page.js",
+  "/page": "app/page.js",
+  "/completedorders/page": "app/completedorders/page.js",
+  "/signin/page": "app/signin/page.js"
 }
