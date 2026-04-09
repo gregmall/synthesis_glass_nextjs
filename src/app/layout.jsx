@@ -1,6 +1,7 @@
 import './globals.css'
 import Providers from '../components/Providers'
 
+
 export const metadata = {
   title: 'Synthesis Glass',
   description: 'High quality American made glass art since 1997',
