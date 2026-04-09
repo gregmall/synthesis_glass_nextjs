@@ -1,7 +1,6 @@
 'use client'
 import React, { useEffect, useState, useCallback } from 'react'
 import { db } from '../../config/Config';
-import { useSearchParams } from 'next/navigation';
 import { Confirm } from 'notiflix/build/notiflix-confirm-aio';
 
 function CustomerCard({ customer, onComplete }) {
@@ -34,21 +33,16 @@ export default function Customers() {
   const [customers, setCustomers] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-  const searchParams = useSearchParams();
-
-  const usersParam = searchParams.get('users');
-  const users = usersParam ? JSON.parse(usersParam) : null;
 
   useEffect(() => {
-    if (!users) {
-      setLoading(false);
-      return;
-    }
-
     const fetchCustomers = async () => {
       try {
-        const snapshot = await db.collection('customers').get();
-        const filtered = snapshot.docs.filter(doc => !doc.data().completed);
+        const [customersSnap, usersSnap] = await Promise.all([
+          db.collection('customers').get(),
+          db.collection('users').get(),
+        ]);
+        const users = usersSnap.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+        const filtered = customersSnap.docs.filter(doc => !doc.data().completed);
         const userMap = new Map(users.map(u => [u.id, u]));
         const matched = filtered.reduce((acc, doc) => {
           const user = userMap.get(doc.id);
@@ -72,8 +66,7 @@ export default function Customers() {
     };
 
     fetchCustomers();
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [usersParam]);
+  }, []);
 
   const handleClick = useCallback((customer) => {
     const order = {
@@ -126,8 +119,6 @@ export default function Customers() {
           <p className='text-center mt-4'>Loading...</p>
         ) : error ? (
           <p className='text-center mt-4 text-red-500'>{error}</p>
-        ) : !users ? (
-          <p className='text-center mt-4'>No user data available.</p>
         ) : customers.length === 0 ? (
           <p className='text-center mt-4'>No open orders found.</p>
         ) : (

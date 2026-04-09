@@ -1,5 +1,5 @@
 'use client'
-import React, { useState, useEffect } from 'react'
+import { useState, useEffect } from 'react'
 import { db } from '../../config/Config';
 
 export default function CompletedOrders() {
@@ -38,7 +38,13 @@ export default function CompletedOrders() {
                 {order.items?.map((item, idx) => (
                   <div key={idx} className='flex flex-col'>
                     <div className='w-1/2'>{item.name}</div>
-                    <div className='w-1/4'><img src={item.image[0]} alt={item.name} className='w-16 h-16 object-cover' /></div>
+                    <div className='w-1/4'>
+                      <div
+                        className='w-16 h-16 bg-cover bg-center rounded'
+                        style={{ backgroundImage: `url(${item.image[0]})` }}
+                        title={item.name}
+                      />
+                    </div>
                     <div className='w-1/4'>Price: ${item.price.toFixed(2)}</div>
                     <div className='w-full'>Message: {order.message}</div>
                   </div>
