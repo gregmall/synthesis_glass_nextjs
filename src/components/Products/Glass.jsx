@@ -40,6 +40,8 @@ const Glass = () => {
   const searchTerm = searchParams.get('search') ?? '';
   const page = parseInt(searchParams.get('page') ?? '1', 10);
 
+  const [inputValue, setInputValue] = useState(searchTerm);
+
   const setParam = useCallback((updates) => {
     const next = new URLSearchParams(searchParams.toString());
     Object.entries(updates).forEach(([k, v]) => {
@@ -49,9 +51,13 @@ const Glass = () => {
     router.replace(`/glass?${next.toString()}`);
   }, [router, searchParams]);
 
-  const onSearchChange = useCallback((e) => {
-    setParam({ search: e.target.value, page: null });
-  }, [setParam]);
+  const onSearchSubmit = useCallback(() => {
+    setParam({ search: inputValue, page: null });
+  }, [setParam, inputValue]);
+
+  const onKeyDown = useCallback((e) => {
+    if (e.key === 'Enter') onSearchSubmit();
+  }, [onSearchSubmit]);
 
   const handleFilterChange = useCallback((value) => {
     setParam({ filter: value, page: null });
@@ -97,8 +103,11 @@ const Glass = () => {
       <div className='text-center text-white font-bold'>
         Inquire about any customizations
       </div>
-      <div className='w-72 flex-col items-center justify-center mx-auto mt-5 mb-10 text-color-black bg-white rounded-lg p-1'>
-        <Input label="Search items..." value={searchTerm} placeholder="Search by type, color, theme, etc..." onChange={onSearchChange} />
+      <div className='flex items-center justify-center gap-2 mx-auto mt-5 mb-10'>
+        <div className='w-72 text-color-black bg-white rounded-lg p-1'>
+          <Input label="Search items..." value={inputValue} placeholder="Search by type, color, theme, etc..." onChange={e => setInputValue(e.target.value)} onKeyDown={onKeyDown} />
+        </div>
+        <Button color="blue" onClick={onSearchSubmit}>Search</Button>
       </div>
       <div
         style={{
