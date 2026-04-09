@@ -11,9 +11,11 @@ const Account = () => {
     const router = useRouter();
 
     useEffect(() => {
-        const userFromStorage = JSON.parse(localStorage.getItem('user'))
-        if (userFromStorage === null) {
-            router.push('/signin')
+        if (typeof window !== 'undefined') {
+            const userFromStorage = JSON.parse(localStorage.getItem('user'))
+            if (userFromStorage === null) {
+                router.push('/signin')
+            }
         }
     }, [router])
 

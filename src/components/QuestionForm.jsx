@@ -19,9 +19,9 @@ const QuestionForm = () => {
     const [loading, setLoading] = useState(false)
 
     const getQuestion = () => {
-        const num = Math.floor(Math.random() * 5)
+        // Use a stable index instead of random to avoid hydration mismatch
         const array = ['Do you make bubblers?', 'Can I customize colors?', 'Do you ship to Canada?', 'Do you make 19mm bowls?', 'Do you do repair work?']
-        return array[num]
+        return array[0]
     }
 
     const handleSubmit = async (e) => {
