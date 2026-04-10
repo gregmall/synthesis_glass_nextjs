@@ -94,13 +94,10 @@ const ShoppingCart = () => {
             'Yes',
             'No',
             async () => {
-                let arr = cartItems;
-                arr.forEach((element, index) => {
-                    if (element.id === item.id) arr.splice(index, 1);
-                });
-
-                await db.collection('users').doc(user.uid).update({ cart: arr })
-                    .then(() => router.push('/cart'));
+                const arr = cartItems.filter((element) => element.id !== item.id);
+                setCartItems(arr);
+                setTotal(arr.reduce((sum, i) => sum + i.price, 0).toFixed(2));
+                await db.collection('users').doc(user.uid).update({ cart: arr });
             },
             () => {
                 let sum = 0;
