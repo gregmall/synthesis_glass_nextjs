@@ -1,0 +1,25 @@
+'use server'
+import nodemailer from 'nodemailer';
+import { NextResponse } from 'next/server';
+const SMTP_SERVER_HOST = process.env.SMTP_SERVER_HOST;
+const SMTP_SERVER_USERNAME = process.env.SMTP_SERVER_USERNAME;
+const SMTP_SERVER_PASSWORD = process.env.SMTP_SERVER_PASSWORD;
+const SITE_MAIL_RECEIVER = process.env.SITE_MAIL_RECEIVER;
+const transporter = nodemailer.createTransport({
+    service:'outlook',
+    host: SMTP_SERVER_HOST,
+    port: 587,
+    secure: true,
+    auth: {
+        user: SMTP_SERVER_USERNAME,
+        password: SMTP_SERVER_PASSWORD,
+    },
+});
+
+transporter.verify((err, success)=>{
+    if(err){
+        console.log(err)
+    }else{
+        console.log('Ready for message')
+    }
+});
