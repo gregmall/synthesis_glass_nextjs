@@ -9,10 +9,10 @@ const transporter = nodemailer.createTransport({
     service:'outlook',
     host: SMTP_SERVER_HOST,
     port: 587,
-    secure: true,
+    secure: false,
     auth: {
         user: SMTP_SERVER_USERNAME,
-        password: SMTP_SERVER_PASSWORD,
+        pass: SMTP_SERVER_PASSWORD,
     },
 });
 
@@ -23,3 +23,16 @@ transporter.verify((err, success)=>{
         console.log('Ready for message')
     }
 });
+export const sendEmail = async (mail)=>{
+console.log(mail)
+    return await transporter.sendMail({
+        from: SMTP_SERVER_USERNAME,
+        to: mail.to,
+        subject: mail.subject,
+        html: mail.html,
+        text: mail.text
+
+    })
+
+
+}
