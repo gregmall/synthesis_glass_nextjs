@@ -24,7 +24,7 @@ transporter.verify((err, success)=>{
     }
 });
 export const sendEmail = async (mail)=>{
-console.log(mail)
+console.log(mail.to)
     return await transporter.sendMail({
         from: SMTP_SERVER_USERNAME,
         to: mail.to,

@@ -1,6 +1,5 @@
 'use client'
-import { useState, useContext, useCallback, useEffect } from 'react'
-import React from 'react'
+import { useState, useContext, useCallback } from 'react'
 import { AiOutlineClose, AiOutlineMenu } from 'react-icons/ai'
 import { auth } from '../../config/Config'
 import Link from 'next/link'
@@ -30,15 +29,9 @@ const Navbar = () => {
   const { user } = useContext(UserContext)
 
   const [mobileOpen, setMobileOpen] = useState(false)
-  const [isAdmin, setIsAdmin] = useState(false)
   const router = useRouter()
 
-  React.useEffect(() => {
-    try {
-      const stored = JSON.parse(localStorage.getItem('user'))
-      setIsAdmin(stored?.uid === process.env.NEXT_PUBLIC_ADMIN_ID)
-    } catch { /* ignored */ }
-  }, [])
+  const isAdmin = user?.uid === process.env.NEXT_PUBLIC_ADMIN_ID
 
   const cartCount = user?.cart?.length || 0
 

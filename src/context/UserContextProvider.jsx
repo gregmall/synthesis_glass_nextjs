@@ -18,7 +18,8 @@ const UserContextProvider = ({ children }) => {
       }
       if (user) {
         unsubscribeSnapshot = db.collection('users').doc(user.uid).onSnapshot(snapshot => {
-          setUser({ 
+          setUser({
+            uid: user.uid,
             email: snapshot.data()?.email,
             name: snapshot.data()?.name,
             userRole: snapshot.data()?.userRole,
