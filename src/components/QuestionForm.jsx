@@ -2,6 +2,7 @@
 import React, { useState } from 'react'
 import { db } from '../config/Config';
 import { useRouter } from 'next/navigation';
+import { sendEmail } from '../app/api/email/route';
 import {
     Card,
     Input,
@@ -11,48 +12,48 @@ import {
     Spinner
 } from "@material-tailwind/react";
 
+const PLACEHOLDER_QUESTION = 'Do you make bubblers?';
+
+const labelProps = { className: "before:content-none after:content-none" };
+
 const QuestionForm = () => {
     const router = useRouter();
-    const [name, setName] = useState();
-    const [email, setEmail] = useState();
-    const [content, setContent] = useState();
-    const [loading, setLoading] = useState(false)
-
-    const getQuestion = () => {
-        // Use a stable index instead of random to avoid hydration mismatch
-        const array = ['Do you make bubblers?', 'Can I customize colors?', 'Do you ship to Canada?', 'Do you make 19mm bowls?', 'Do you do repair work?']
-        return array[0]
-    }
+    const [name, setName] = useState('');
+    const [email, setEmail] = useState('');
+    const [content, setContent] = useState('');
+    const [loading, setLoading] = useState(false);
 
     const handleSubmit = async (e) => {
         e.preventDefault();
         setLoading(true);
-        const today = Date.now();
 
         try {
-            await db.collection('formSubmission').add({
-                name: name,
-                content: content,
-                email: email,
-                date: today
-            })
-                .then(setLoading(false))
-                .finally(() => {
-                    alert('Form Submitted! We will get back to you ASAP')
-                    router.push('/')
-                })
+            await sendEmail({
+                to: 'greg@synthesisglass.com',
+                subject: 'Form Submission from Synthesis Glass Website',
+                text: `You received a form submission from ${name || 'a user'}!\nEmail: ${email || 'No email provided'}\nQuestion/Comment: ${content || 'No content provided'}`
+            });
+        } catch (error) {
+            console.error('Error sending email:', error);
         }
-        catch (error) {
-            console.log(error.message)
-            alert(`Error submitting form: ${error.message}`)
-            setLoading(false)
+
+        try {
+            await db.collection('formSubmission').add({ name, content, email, date: Date.now() });
+            alert('Form Submitted! We will get back to you ASAP');
+            router.push('/');
+        } catch (error) {
+            console.error(error.message);
+            alert(`Error submitting form: ${error.message}`);
+        } finally {
+            setLoading(false);
         }
-    }
+    };
 
     return (
         <div className='flex justify-center mt-4'>
-            {loading ?
-                <Spinner /> :
+            {loading ? (
+                <Spinner />
+            ) : (
                 <Card color="white" shadow={false} className='min-w-fit p-11'>
                     <Typography variant="h4" color="blue-gray">
                         Have a Question?
@@ -68,13 +69,12 @@ const QuestionForm = () => {
                             </Typography>
                             <Input
                                 size="lg"
-                                type='text'
+                                type="text"
                                 placeholder="Ronnie James Dio"
-                                className=" !border-t-blue-gray-200 focus:!border-t-gray-900"
-                                onChange={(e) => setName(e.target.value)} value={name}
-                                labelProps={{
-                                    className: "before:content-none after:content-none",
-                                }}
+                                className="!border-t-blue-gray-200 focus:!border-t-gray-900"
+                                onChange={(e) => setName(e.target.value)}
+                                value={name}
+                                labelProps={labelProps}
                             />
                             <Typography variant="h6" color="blue-gray" className="-mb-3">
                                 Your Email
@@ -83,39 +83,35 @@ const QuestionForm = () => {
                                 size="lg"
                                 type="email"
                                 placeholder="LemmieIsGod@rock.com"
-                                className=" !border-t-blue-gray-200 focus:!border-t-gray-900"
-                                onChange={(e) => setEmail(e.target.value)} value={email}
-                                labelProps={{
-                                    className: "before:content-none after:content-none",
-                                }}
+                                className="!border-t-blue-gray-200 focus:!border-t-gray-900"
+                                onChange={(e) => setEmail(e.target.value)}
+                                value={email}
+                                labelProps={labelProps}
                             />
                             <Typography variant="h6" color="blue-gray" className="-mb-3">
                                 Question/Comment/Inquiry
                             </Typography>
                             <Textarea
-                                type='text'
                                 size="lg"
-                                placeholder={getQuestion()}
-                                className=" !border-t-blue-gray-200 focus:!border-t-gray-900"
-                                onChange={(e) => setContent(e.target.value)} value={content}
-                                labelProps={{
-                                    className: "before:content-none after:content-none",
-                                }}
+                                placeholder={PLACEHOLDER_QUESTION}
+                                className="!border-t-blue-gray-200 focus:!border-t-gray-900"
+                                onChange={(e) => setContent(e.target.value)}
+                                value={content}
+                                labelProps={labelProps}
                             />
-
-                            <Button className="mt-6" fullWidth type='submit'>
+                            <Button className="mt-6" fullWidth type="submit">
                                 Submit
                             </Button>
                         </div>
                         <Typography color="gray" className="mt-4 text-center font-normal">
                             Prefer to email?{" "}
-                            <a href="mailto:greg@synthesisglass.com?subject=Hi! I have an inquiry regarding your glass work..." className='text-blue-500 font-bold'>Click Here</a>
+                            <a href="mailto:greg@synthesisglass.com?subject=Hi! I have an inquiry regarding your glass work..." className="text-blue-500 font-bold">Click Here</a>
                         </Typography>
                     </form>
                 </Card>
-            }
+            )}
         </div>
-    )
-}
+    );
+};
 
 export default QuestionForm;
