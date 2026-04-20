@@ -12,13 +12,12 @@ const EmailPortal = () => {
 
   const [emailStatus, setEmailStatus] = useState(null)
   const [loading, setLoading] = useState(false)
-  const [email, setEmail] = useState([''])
+  const [email, setEmail] = useState('')
   const [emailData, setEmailData] = useState(null)
   const [message, setMessage] = useState('')
   const [subject, setSubject] = useState('')
   const [recipient, setRecipient] = useState('')
   const [htmlMessage, setHtmlMessage] = useState('')
-console.log(email)
 useEffect(() => {
     const fetchEmail = async () => {
       try {
@@ -72,21 +71,21 @@ useEffect(() => {
         <Typography color="gray" className="mt-1 font-normal">
           Recipient Email:
         </Typography>
-          <div className='flex '><Input type="text" value={email}  className='mb-4' onChange={(e)=>setEmail(e.target.value)}  /><Button onClick={() => setEmail('')} className='mb-4 bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline'>x</Button></div> 
+          <div className='flex '><Input type="text" value={email}  className='mb-4' onChange={(e)=>setEmail(e.target.value)}  /><Button onClick={() => setEmail('')} className='mb-4 bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline mx-3'>x</Button></div> 
         <Typography color="gray" className="mt-1 font-normal">
           Subject:
         </Typography>
-        <div className='flex'><Input type="text" value={subject} className='mb-4' onChange={(e)=>setSubject(e.target.value)}  /><Button onClick={()=> setSubject('')} className='mb-4 bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline'>x</Button></div>
+        <div className='flex'><Input type="text" value={subject} className='mb-4' onChange={(e)=>setSubject(e.target.value)}  /><Button onClick={()=> setSubject('')} className='mb-4 bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline mx-3'>x</Button></div>
  
       
         <Typography color="gray" className="mt-1 font-normal">
           Message:
         </Typography>
-        <div className='flex'><Textarea value={message} onChange={(e)=> setMessage(e.target.value)}  className='mb-4' /><Button onClick={()=> setMessage('')} className='mb-4 bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline'>x</Button></div>  
+        <div className='flex'><Textarea value={message} onChange={(e)=> setMessage(e.target.value)}  className='mb-4' /><Button onClick={()=> setMessage('')} className='mb-4 bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline mx-3'>x</Button></div>  
         <Typography color="gray" className="mt-1 font-normal">
           HTML Message (optional):
         </Typography>
-        <div className='flex'><Textarea value={htmlMessage} onChange={(e)=> setHtmlMessage(e.target.value)}  className='mb-4' /><Button onClick={()=> setHtmlMessage('')} className='mb-4 bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline'>x</Button></div>
+        <div className='flex'><Textarea value={htmlMessage} onChange={(e)=> setHtmlMessage(e.target.value)}  className='mb-4' /><Button onClick={()=> setHtmlMessage('')} className='mb-4 bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline mx-3'>x</Button></div>
         <Button type="submit" disabled={loading} className='bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline' onSubmit={handleSendEmail}>
           {loading ? 'Sending...' : 'Send Email'}
         </Button>       
@@ -98,11 +97,16 @@ useEffect(() => {
             User Emails
           </Typography>
         <Card color="white" shadow={false} className='w-full p-11 mt-3 flex flex-col items-start justify-start max-w-lg overflow-y-auto max-h-[300px]'>
-       
+
           {emailData ? (
-            emailData.map((email, index) => (
-              <Typography key={index} color="gray" className="mt-1 font-normal">
-                {email}
+            emailData.map((addr, index) => (
+              <Typography
+                key={index}
+                color="gray"
+                className={`mt-1 font-normal cursor-pointer px-2 py-1 rounded w-full hover:bg-blue-50 ${email === addr ? 'bg-blue-100 font-semibold text-blue-800' : ''}`}
+                onClick={() => setEmail(addr)}
+              >
+                {addr}
               </Typography>
             ))
           ) : (
