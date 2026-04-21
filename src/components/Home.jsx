@@ -95,6 +95,7 @@ const Home = () => {
             </Typography>
           </div>
         </div>
+        <div className="flex justify-center mt-8 text-xs"><em>Copyright &copy; 2026 Synthesis Glass, All rights reserved.</em></div>
       </div>
 
       <Dialog
