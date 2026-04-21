@@ -7,15 +7,15 @@ import { UserContext } from '../../context/UserContextProvider';
 import Notiflix from 'notiflix';
 
 const BTN_CLASS = 'my-4 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline'
+const VORTEX_COLORS = ['red', 'green', 'blue', 'yellow', 'orange', 'purple'];
 
 const GlassDetail = () => {
     const params = useParams();
     const { user } = useContext(UserContext);
     const router = useRouter();
-    const [item, setItem] = useState();
+    const [item, setItem] = useState(null);
     const [loading, setLoading] = useState(true);
-    const [images, setImages] = useState([]);
-    const [active, setActive] = useState();
+    const [active, setActive] = useState(null);
     const [adding, setAdding] = useState(false);
 
     useEffect(() => {
@@ -24,12 +24,10 @@ const GlassDetail = () => {
                 const doc = await db.collection('Products').doc(params.id).get();
                 if (doc.exists) {
                     const data = doc.data();
-                    const array = data.ProductImage.map(img => ({ imgLink: img }));
-                    setImages(array);
-                    setActive(array[0]?.imgLink || '');
+                    setActive(data.ProductImage?.[0] || null);
                     setItem({
                         id: data.ID,
-                        image: data.ProductImage,
+                        images: data.ProductImage,
                         title: data.ProductName,
                         description: data.ProductDescription,
                         price: data.ProductPrice
@@ -48,13 +46,13 @@ const GlassDetail = () => {
         };
 
         getItem();
-    }, [params.id, router]);
+    }, [params.id]);
 
-    const handleClick = async (item) => {
+    const handleAddToCart = async () => {
         setAdding(true);
         try {
             await db.collection('users').doc(user.id).update({
-                cart: [...(user.cart || []), { id: params.id, name: item.title, image: item.image, price: item.price }]
+                cart: [...(user.cart || []), { id: params.id, name: item.title, image: item.images, price: item.price }]
             });
             Notiflix.Notify.success(`${item.title} added to shopping cart!`);
             router.back();
@@ -66,41 +64,61 @@ const GlassDetail = () => {
         }
     };
 
-    return (
-        <div className='flex items-center justify-center flex-wrap overflow-x-auto'>
-            {loading ?
+    if (loading) {
+        return (
+            <div className='flex items-center justify-center mt-20'>
                 <Vortex
                     visible={true}
                     height="80"
                     width="80"
                     ariaLabel="vortex-loading"
                     wrapperClassName="vortex-wrapper"
-                    colors={['red', 'green', 'blue', 'yellow', 'orange', 'purple']}
+                    colors={VORTEX_COLORS}
                 />
-                :
-                <div className='max-w-xl rounded overflow-hidden bg-slate-50 mx-3 my-3 shadow-2xl'>
-                    <div className='font-bold text-3xl mb-2 flex justify-center px-4'>{item?.title}</div>
-                    <div>
-                        <img className="w-full p-4 rounded" src={active} alt="" />
-                    </div>
-                    <div className="flex justify-center gap-4 max-w-full">
-                        {images.map(({ imgLink }, index) => (
-                            <div key={index} className='flex justify-center'>
-                                <img
-                                    onClick={() => setActive(imgLink)}
-                                    src={imgLink}
-                                    className="h-20 max-w-full cursor-pointer rounded-lg object-cover object-center mx-2 flex-wrap px-1"
-                                    alt="/"
-                                />
+            </div>
+        );
+    }
+
+    return (
+        <div className='flex justify-center px-4 py-8'>
+            <div className='w-full max-w-4xl rounded overflow-hidden bg-slate-50 shadow-2xl'>
+                <div className='flex flex-col md:flex-row'>
+                    {/* Image gallery */}
+                    <div className='md:w-1/2 p-4 flex flex-col gap-3'>
+                        <img
+                            className='w-full rounded-lg object-cover aspect-square'
+                            src={active}
+                            alt={item?.title}
+                        />
+                        {item?.images?.length > 1 && (
+                            <div className='flex gap-2 flex-wrap'>
+                                {item.images.map((imgLink, index) => (
+                                    <img
+                                        key={index}
+                                        onClick={() => setActive(imgLink)}
+                                        src={imgLink}
+                                        alt={`${item.title} view ${index + 1}`}
+                                        className={`h-16 w-16 cursor-pointer rounded-lg object-cover transition-all ${
+                                            active === imgLink
+                                                ? 'ring-2 ring-blue-500 ring-offset-2'
+                                                : 'opacity-70 hover:opacity-100'
+                                        }`}
+                                    />
+                                ))}
                             </div>
-                        ))}
+                        )}
                     </div>
-                    <div className='px-6 py-4 flex-col'>
-                        <span className='text-xl mb-2'>${item?.price}</span>
-                        <p className='text-gray-700 text-base'>{item?.description}</p>
-                        <div className='flex justify-between'>
+
+                    {/* Product details */}
+                    <div className='md:w-1/2 px-6 py-4 flex flex-col justify-between'>
+                        <div>
+                            <h1 className='font-bold text-3xl mb-3'>{item?.title}</h1>
+                            <span className='text-2xl font-semibold text-gray-800'>${item?.price}</span>
+                            <p className='text-gray-700 text-base mt-4 leading-relaxed'>{item?.description}</p>
+                        </div>
+                        <div className='flex justify-between mt-6'>
                             {user
-                                ? <button className={BTN_CLASS} disabled={adding} onClick={() => handleClick(item)}>
+                                ? <button className={BTN_CLASS} disabled={adding} onClick={handleAddToCart}>
                                     {adding ? 'Adding...' : 'Add to cart!'}
                                   </button>
                                 : <button className={BTN_CLASS} onClick={() => router.push('/signin')}>Sign in to purchase!</button>
@@ -109,7 +127,7 @@ const GlassDetail = () => {
                         </div>
                     </div>
                 </div>
-            }
+            </div>
         </div>
     );
 };

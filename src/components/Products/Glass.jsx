@@ -17,10 +17,20 @@ const FILTER_OPTIONS = [
 
 const VORTEX_COLORS = ['red', 'green', 'blue', 'yellow', 'orange', 'purple', 'white'];
 
+// Module-level cache — persists across client-side route changes for the session
+let productCache = null;
+
 const GlassCard = memo(({ item }) => (
   <Link href={`/item/${item.ID}`}>
-    <div className='max-w-sm rounded overflow-hidden shadow-lg bg-slate-50 mx-3 my-3 hover:bg-fuchsia-400 ease-in-out duration-100'>
-      <img className='w-full p-4 rounded' src={item.ProductImage} alt={item.ProductName} loading="lazy" />
+    <div className='rounded overflow-hidden shadow-lg bg-slate-50 hover:bg-fuchsia-400 ease-in-out duration-100 flex flex-col'>
+      <div className='aspect-square overflow-hidden'>
+        <img
+          className='w-full h-full object-cover p-4 rounded'
+          src={item.ProductImage}
+          alt={item.ProductName}
+          loading="lazy"
+        />
+      </div>
       <div className='px-6 py-4'>
         <div className='font-bold text-xl mb-2'>{item.ProductName}</div>
         <span className='text-xl mb-2'>${item.ProductPrice}</span>
@@ -28,6 +38,7 @@ const GlassCard = memo(({ item }) => (
     </div>
   </Link>
 ));
+GlassCard.displayName = 'GlassCard';
 
 const Glass = () => {
   const [loading, setLoading] = useState(true);
@@ -41,6 +52,11 @@ const Glass = () => {
   const page = parseInt(searchParams.get('page') ?? '1', 10);
 
   const [inputValue, setInputValue] = useState(searchTerm);
+
+  // Sync input with URL on back/forward navigation
+  useEffect(() => {
+    setInputValue(searchTerm);
+  }, [searchTerm]);
 
   const setParam = useCallback((updates) => {
     const next = new URLSearchParams(searchParams.toString());
@@ -64,10 +80,17 @@ const Glass = () => {
   }, [setParam]);
 
   useEffect(() => {
+    if (productCache) {
+      setItems(productCache);
+      setLoading(false);
+      return;
+    }
     const getItems = async () => {
       try {
         const products = await db.collection('Products').get();
-        setItems(products.docs.map(snap => ({ ...snap.data(), ID: snap.id })));
+        const data = products.docs.map(snap => ({ ...snap.data(), ID: snap.id }));
+        productCache = data;
+        setItems(data);
       } catch (err) {
         setError('Failed to load products.');
       } finally {
@@ -97,67 +120,86 @@ const Glass = () => {
 
   return (
     <>
+      {/* Sticky toolbar */}
+      <div className='sticky top-16 z-40 bg-gradient-to-r from-[#762a99] to-[#7c0747] shadow-md px-4 py-3'>
+        <div className='max-w-7xl mx-auto flex flex-col sm:flex-row items-center gap-3'>
+          <div className='flex items-center gap-2 w-full sm:w-auto'>
+            <div className='w-full sm:w-72 bg-white rounded-lg p-1'>
+              <Input
+                label="Search items..."
+                value={inputValue}
+                placeholder="Search by type, color, theme, etc..."
+                onChange={e => setInputValue(e.target.value)}
+                onKeyDown={onKeyDown}
+              />
+            </div>
+            <Button color="blue" onClick={onSearchSubmit}>Search</Button>
+          </div>
+          <div className='flex items-center gap-2 flex-wrap justify-center'>
+            {FILTER_OPTIONS.map(option => (
+              <Button
+                key={option.value || 'all'}
+                size="sm"
+                color={filtered === option.value ? 'white' : 'blue'}
+                onClick={() => handleFilterChange(option.value)}
+              >
+                {option.label}
+              </Button>
+            ))}
+          </div>
+        </div>
+      </div>
+
+      {/* Page header */}
       <div className='text-center text-white text-2xl font-bold mt-5'>
         All pieces made to order
       </div>
-      <div className='text-center text-white font-bold'>
+      <div className='text-center text-white font-bold mb-4'>
         Inquire about any customizations
       </div>
-      <div className='flex items-center justify-center gap-2 mx-auto mt-5 mb-10'>
-        <div className='w-72 text-color-black bg-white rounded-lg p-1'>
-          <Input label="Search items..." value={inputValue} placeholder="Search by type, color, theme, etc..." onChange={e => setInputValue(e.target.value)} onKeyDown={onKeyDown} />
+
+      {/* Results count */}
+      {!loading && !error && (
+        <div className='text-center text-white/70 text-sm mb-4'>
+          {filteredItems.length === items.length
+            ? `${items.length} items`
+            : `${filteredItems.length} of ${items.length} items`}
         </div>
-        <Button color="blue" onClick={onSearchSubmit}>Search</Button>
-      </div>
-      <div
-        style={{
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'space-evenly',
-          marginTop: '30px',
-          marginBottom: '30px',
-        }}
-      >
-        {FILTER_OPTIONS.map(option => (
-          <Button
-            key={option.value || 'all'}
-            color={filtered === option.value ? 'white' : 'blue'}
-            onClick={() => handleFilterChange(option.value)}
-          >
-            {option.label}
-          </Button>
-        ))}
-      </div>
-      <div
-        style={{
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'center',
-          flexWrap: 'wrap',
-          overflowX: 'auto',
-        }}
-      >
+      )}
+
+      {/* Product grid */}
+      <div className='max-w-7xl mx-auto px-4'>
         {loading ? (
-          <Vortex
-            visible={true}
-            height="80"
-            width="80"
-            ariaLabel="vortex-loading"
-            wrapperClass="vortex-wrapper"
-            colors={VORTEX_COLORS}
-          />
+          <div className='flex justify-center mt-10'>
+            <Vortex
+              visible={true}
+              height="80"
+              width="80"
+              ariaLabel="vortex-loading"
+              wrapperClass="vortex-wrapper"
+              colors={VORTEX_COLORS}
+            />
+          </div>
         ) : error ? (
-          <p style={{ color: 'red' }}>{error}</p>
+          <p className='text-red-400 text-center mt-10'>{error}</p>
+        ) : pagedItems.length === 0 ? (
+          <p className='text-white text-lg text-center mt-10'>
+            No items found{searchTerm ? ` for "${searchTerm}"` : ''}{filtered ? ` in ${filtered}s` : ''}.
+          </p>
         ) : (
-          pagedItems.map(item => <GlassCard key={item.ID} item={item} />)
+          <div className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 py-6'>
+            {pagedItems.map(item => <GlassCard key={item.ID} item={item} />)}
+          </div>
         )}
       </div>
+
+      {/* Pagination */}
       {!loading && totalPages > 1 && (
-        <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', gap: '8px', margin: '30px 0' }}>
+        <div className='flex justify-center items-center gap-2 my-8'>
           <Button color="blue" disabled={page === 1} onClick={() => setParam({ page: page - 1 })}>
             Prev
           </Button>
-          <span style={{ color: 'white' }}>Page {page} of {totalPages}</span>
+          <span className='text-white'>Page {page} of {totalPages}</span>
           <Button color="blue" disabled={page === totalPages} onClick={() => setParam({ page: page + 1 })}>
             Next
           </Button>
