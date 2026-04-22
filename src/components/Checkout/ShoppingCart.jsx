@@ -7,8 +7,6 @@ import {
     Button,
     Typography,
 } from "@material-tailwind/react";
-import { signInAnonymously, onAuthStateChanged } from 'firebase/auth';
-import { collection, addDoc, onSnapshot } from 'firebase/firestore';
 import { BsTrash3 } from "react-icons/bs"
 import { Confirm } from 'notiflix/build/notiflix-confirm-aio';
 import Link from 'next/link'
@@ -37,12 +35,12 @@ const ShoppingCart = () => {
     };
 
     useEffect(() => {
-        const unsubscribe = onAuthStateChanged(auth, async (currentUser) => {
+        const unsubscribe = auth.onAuthStateChanged(async (currentUser) => {
             if (currentUser) {
                 setUser(currentUser);
             } else {
                 try {
-                    const userCredential = await signInAnonymously(auth);
+                    const userCredential = await auth.signInAnonymously();
                     setUser(userCredential.user);
                 } catch (error) {
                     console.error('Authentication error:', error);
@@ -129,9 +127,11 @@ const ShoppingCart = () => {
                 quantity: 1,
             }));
 
-            const checkoutSessionRef = await addDoc(
-                collection(db, 'customers', user.uid, 'checkout_sessions'),
-                {
+            const checkoutSessionRef = await db
+                .collection('customers')
+                .doc(user.uid)
+                .collection('checkout_sessions')
+                .add({
                     mode: 'payment',
                     line_items: line_items,
                     success_url: window.location.origin + '/complete?success=true',
@@ -143,10 +143,9 @@ const ShoppingCart = () => {
                             quantity: item.quantity
                         })))
                     }
-                }
-            );
+                });
 
-            const unsubscribe = onSnapshot(checkoutSessionRef, (snap) => {
+            const unsubscribe = checkoutSessionRef.onSnapshot((snap) => {
                 const data = snap.data();
                 if (data?.url) {
                     window.location.assign(data.url);

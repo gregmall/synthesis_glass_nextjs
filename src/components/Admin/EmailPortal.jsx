@@ -2,7 +2,6 @@
 import React, { useContext, useState, useEffect } from 'react'
 import { sendEmail } from '../../app/api/email/route.js';
 import { db } from '../../config/Config';
-import emails from '/public/assets/emails.json'
 import { Card,
     Input,
     Button,
@@ -12,13 +11,6 @@ import { Card,
 const EmailPortal = () => {
   
 
-
-  let list = [];
-  for (const key in emails) {
-    if (emails.hasOwnProperty(key)) {
-      list.push(emails[key]);
-    }
-  }
 
   const [emailStatus, setEmailStatus] = useState(null)
   const [loading, setLoading] = useState(false)
