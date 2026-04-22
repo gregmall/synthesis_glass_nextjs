@@ -86,7 +86,7 @@ const GlassDetail = () => {
                     {/* Image gallery */}
                     <div className='md:w-1/2 p-4 flex flex-col gap-3'>
                         <img
-                            className='w-full rounded-lg object-cover aspect-square'
+                            className='w-full rounded-lg object-contain bg-white'
                             src={active}
                             alt={item?.title}
                         />
