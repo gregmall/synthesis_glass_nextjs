@@ -46,7 +46,7 @@ useEffect(() => {
         to: email,
         subject: subject,
         text: message,
-        html: htmlMessage
+        html: htmlMessage.replace('{{EMAIL}}', encodeURIComponent(email))
       })
       setEmailStatus('Email sent successfully!')
       
