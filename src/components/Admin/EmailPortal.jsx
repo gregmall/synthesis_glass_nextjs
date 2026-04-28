@@ -65,8 +65,9 @@ useEffect(() => {
   const handleBatchEmail = async (e) => {
     e.preventDefault()
     setLoading(true)
-    for (let i = 0; i < emailTest.length; i++) {
-      const testEmail = emailTest[i];
+    for (let i = 0; i < emailFile4.length; i++) {
+      const testEmail = emailFile4[i];
+      console.log(i);
       try {
         await sendEmail({
           to: testEmail,
@@ -111,12 +112,12 @@ useEffect(() => {
         <Button type="submit" disabled={loading} className='bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline' onSubmit={handleSendEmail}>
           {loading ? 'Sending...' : 'Send Email'}
         </Button> 
-        <Button type="button" disabled={loading} className='ml-4 bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline' onClick={handleBatchEmail}>
+        {/* <Button type="button" disabled={loading} className='ml-4 bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline' onClick={handleBatchEmail}>
           {loading ? 'Sending...' : 'Send Batch Email'}
-        </Button>   
+        </Button>    */}
         </form>
       </Card>   
-      </div>, mk
+      </div>
       <div className='mx-4'>
            <Typography variant="h4" color="white">
             User Emails
