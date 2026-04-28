@@ -46,8 +46,9 @@ export default function Customers() {
         const userMap = new Map(users.map(u => [u.id, u]));
         const matched = filtered.reduce((acc, doc) => {
           const user = userMap.get(doc.id);
-          if (user && user.history?.[0]?.completed !== true) {
-            acc.push({ id: doc.id, ...doc.data(), name: user.name, message: user.cartMessage, address: user.shippingAddress, history: user.history?.[0] ?? null });
+          const incompleteOrder = user?.history?.find(h => h.completed === false);
+          if (user && incompleteOrder) {
+            acc.push({ id: doc.id, ...doc.data(), name: user.name, message: user.cartMessage, address: user.shippingAddress, history: incompleteOrder });
           }
           return acc;
         }, []);
