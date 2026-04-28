@@ -7,6 +7,7 @@ import { Card,
     Button,
     Typography,
     Textarea } from "@material-tailwind/react";
+import  { emailFile1, emailFile2, emailFile3, emailFile4, emailTest }  from '../../../emails.json' 
 
 const EmailPortal = () => {
   
@@ -61,6 +62,25 @@ useEffect(() => {
 
 
   }
+  const handleBatchEmail = async (e) => {
+    e.preventDefault()
+    setLoading(true)
+    for (let i = 0; i < emailTest.length; i++) {
+      const testEmail = emailTest[i];
+      try {
+        await sendEmail({
+          to: testEmail,
+          subject: subject,
+          text: message,
+          html: htmlMessage.replace('{{EMAIL}}', encodeURIComponent(testEmail))
+        })
+      } catch (error) {
+        console.error(`Error sending email to ${testEmail}:`, error)
+      }
+    }
+    setEmailStatus('Batch email sending completed!')
+    setLoading(false)
+  }
 
   return (
     <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', marginTop: '100px', flexDirection: 'column' }}>
@@ -90,10 +110,13 @@ useEffect(() => {
         <div className='flex'><Textarea value={htmlMessage} onChange={(e)=> setHtmlMessage(e.target.value)}  className='mb-4' /><Button onClick={()=> setHtmlMessage('')} className='mb-4 bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline mx-3'>x</Button></div>
         <Button type="submit" disabled={loading} className='bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline' onSubmit={handleSendEmail}>
           {loading ? 'Sending...' : 'Send Email'}
-        </Button>       
+        </Button> 
+        <Button type="button" disabled={loading} className='ml-4 bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline' onClick={handleBatchEmail}>
+          {loading ? 'Sending...' : 'Send Batch Email'}
+        </Button>   
         </form>
       </Card>   
-      </div>
+      </div>, mk
       <div className='mx-4'>
            <Typography variant="h4" color="white">
             User Emails
