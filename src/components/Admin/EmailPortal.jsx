@@ -7,7 +7,7 @@ import { Card,
     Button,
     Typography,
     Textarea } from "@material-tailwind/react";
-
+import Notiflix from 'notiflix';
 const EmailPortal = () => {
   
 
@@ -55,7 +55,7 @@ useEffect(() => {
       console.error('Error sending email:', error)
       setEmailStatus('Failed to send email.')
     } finally {
-      alert('Email sent successfully!')
+      Notiflix.Notify.success('Email successfully sent!');
       setLoading(false)
     }
 
