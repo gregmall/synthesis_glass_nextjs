@@ -96,7 +96,8 @@ export default function Customers() {
           const userSnap = await userRef.get();
           const history = userSnap.data()?.history ?? [];
           if (history.length > 0) {
-            history[0] = { ...history[0], completed: true };
+            const item = history.length - 1;
+            history[item] = { ...history[item], completed: true };
             await userRef.update({ history });
           }
           setCustomers(prev => prev.filter(c => c.id !== order.id));
