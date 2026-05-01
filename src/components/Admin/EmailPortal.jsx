@@ -66,17 +66,17 @@ useEffect(() => {
     e.preventDefault()
     setLoading(true)
     for (let i = 0; i < emailFile4.length; i++) {
-      const testEmail = emailFile4[i];
+      const mailRecipient = emailFile4[i];
       console.log(i);
       try {
         await sendEmail({
-          to: testEmail,
+          to: mailRecipient,
           subject: subject,
           text: message,
-          html: htmlMessage.replace('{{EMAIL}}', encodeURIComponent(testEmail))
+          html: htmlMessage.replace('{{EMAIL}}', encodeURIComponent(mailRecipient))
         })
       } catch (error) {
-        console.error(`Error sending email to ${testEmail}:`, error)
+        console.error(`Error sending email to ${mailRecipient}:`, error)
       }
     }
     setEmailStatus('Batch email sending completed!')
