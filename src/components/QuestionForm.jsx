@@ -30,6 +30,25 @@ const QuestionForm = () => {
         setLoading(true);
 
         try {
+            const captchaRes = await fetch('/api/verify-captcha', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ token: captchaValue }),
+            });
+            const captchaData = await captchaRes.json();
+            if (!captchaData.success) {
+                alert('Captcha verification failed. Please try again.');
+                setLoading(false);
+                return;
+            }
+        } catch (error) {
+            console.error('Captcha verification error:', error);
+            alert('Captcha verification failed. Please try again.');
+            setLoading(false);
+            return;
+        }
+
+        try {
             await sendEmail({
                 to: 'greg@synthesisglass.com',
                 subject: 'Form Submission from Synthesis Glass Website',

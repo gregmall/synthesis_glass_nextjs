@@ -25,9 +25,28 @@ const SignUp = () => {
         setShowPassword(!showPassword)
     }
 
-    const Signup = (e) => {
+    const Signup = async (e) => {
         e.preventDefault();
-        setLoading(true)
+        setLoading(true);
+
+        try {
+            const captchaRes = await fetch('/api/verify-captcha', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ token: captchaValue }),
+            });
+            const captchaData = await captchaRes.json();
+            if (!captchaData.success) {
+                setErrorMsg('Captcha verification failed. Please try again.');
+                setLoading(false);
+                return;
+            }
+        } catch (error) {
+            setErrorMsg('Captcha verification failed. Please try again.');
+            setLoading(false);
+            return;
+        }
+
         auth.createUserWithEmailAndPassword(email, password).then((cred) => {
             db.collection('users').doc(cred.user.uid).set({
                 name: name,
