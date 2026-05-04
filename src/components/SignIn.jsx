@@ -51,7 +51,7 @@ const SignIn = () => {
                     colors={['red', 'green', 'blue', 'yellow', 'orange', 'purple']}
                 /> :
                 <div className='p-4 w-full max-w-xs bg-white rounded-md'>
-                    <h2>Sign In</h2>
+                    <h2 className='flex justify-center font-bold'>Sign In</h2>
                     <form className='bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4' onSubmit={handleLogin}>
                         <div>
                             <label className='block text-gray-700 text-sm font-bold mb-2'>Email</label>

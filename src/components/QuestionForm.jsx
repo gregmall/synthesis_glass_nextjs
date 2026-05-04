@@ -3,6 +3,7 @@ import React, { useState } from 'react'
 import { db } from '../config/Config';
 import { useRouter } from 'next/navigation';
 import { sendEmail } from '../app/api/email/route';
+import ReCAPTCHA from 'react-google-recaptcha';
 import {
     Card,
     Input,
@@ -22,10 +23,30 @@ const QuestionForm = () => {
     const [email, setEmail] = useState('');
     const [content, setContent] = useState('');
     const [loading, setLoading] = useState(false);
+    const [captchaValue, setCaptchaValue] = useState(null);
 
     const handleSubmit = async (e) => {
         e.preventDefault();
         setLoading(true);
+
+        try {
+            const captchaRes = await fetch('/api/verify-captcha', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ token: captchaValue }),
+            });
+            const captchaData = await captchaRes.json();
+            if (!captchaData.success) {
+                alert('Captcha verification failed. Please try again.');
+                setLoading(false);
+                return;
+            }
+        } catch (error) {
+            console.error('Captcha verification error:', error);
+            alert('Captcha verification failed. Please try again.');
+            setLoading(false);
+            return;
+        }
 
         try {
             await sendEmail({
@@ -75,6 +96,7 @@ const QuestionForm = () => {
                                 onChange={(e) => setName(e.target.value)}
                                 value={name}
                                 labelProps={labelProps}
+                                required
                             />
                             <Typography variant="h6" color="blue-gray" className="-mb-3">
                                 Your Email
@@ -87,6 +109,7 @@ const QuestionForm = () => {
                                 onChange={(e) => setEmail(e.target.value)}
                                 value={email}
                                 labelProps={labelProps}
+                                required
                             />
                             <Typography variant="h6" color="blue-gray" className="-mb-3">
                                 Question/Comment/Inquiry
@@ -98,16 +121,22 @@ const QuestionForm = () => {
                                 onChange={(e) => setContent(e.target.value)}
                                 value={content}
                                 labelProps={labelProps}
+                                required
                             />
-                            <Button className="mt-6" fullWidth type="submit">
+                            <Button className="mt-6" fullWidth type="submit" disabled={loading || !captchaValue}>
                                 Submit
                             </Button>
                         </div>
                         <Typography color="gray" className="mt-4 text-center font-normal">
                             Prefer to email?{" "}
-                            <a href="mailto:greg@synthesisglass.com?subject=Hi! I have an inquiry regarding your glass work..." className="text-blue-500 font-bold">Click Here</a>
+                            <a href="mailto:greg@synthesisglass.com" className="text-blue-500 font-bold">Click Here</a>
                         </Typography>
                     </form>
+                    <ReCAPTCHA
+                        className='flex justify-center'
+                        sitekey={process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY}
+                        onChange={(value) => setCaptchaValue(value)}
+                    />
                 </Card>
             )}
         </div>
