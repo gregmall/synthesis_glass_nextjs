@@ -16,47 +16,36 @@ const AddProduct = () => {
     const router = useRouter();
 
     const addProduct = async (e) => {
-        setLoading(true);
         e.preventDefault();
+        setLoading(true);
         try {
-            const productsRef = db.collection('Products');
-            const promises = images.map(async (image) => {
-                const snapshot = await storage.ref(`images/${image.name}`).put(image);
-                const downloadUrl = await snapshot.ref.getDownloadURL();
-                return downloadUrl;
-            });
+            const imageUrls = await Promise.all(
+                images.map(async (image) => {
+                    const snapshot = await storage.ref(`images/${image.name}`).put(image);
+                    return snapshot.ref.getDownloadURL();
+                })
+            );
 
-            const imageUrls = await Promise.all(promises);
-
-            const newProduct = {
+            await db.collection('Products').add({
                 ProductDescription: description,
                 ProductImage: imageUrls,
                 ProductName: name,
                 ProductPrice: Number(price),
                 Type: type,
-            };
-
-            await productsRef.add(newProduct).then(() => {
-                setLoading(false);
-                Notify.success("ADDED!");
-                router.push('/glass');
             });
 
-            console.log('Product uploaded successfully');
+            Notify.success("ADDED!");
+            router.push('/glass');
         } catch (error) {
-            setLoading(false);
             console.error('Error uploading product:', error);
             Notify.failure("Failed to add product. Please try again.");
+        } finally {
+            setLoading(false);
         }
     };
 
     const productImgHandler = (e) => {
-        let allImages = [];
-        for (let i = 0; i < e.target.files.length; i++) {
-            const newImage = e.target.files[i];
-            allImages.push(newImage);
-        }
-        setImages(allImages);
+        setImages(Array.from(e.target.files));
     };
 
     return (
@@ -107,22 +96,13 @@ const AddProduct = () => {
                         <option value="bowl">bowl</option>
                     </select>
                     <br />
-                    {loading ? (
-                        <button
-                            className='my-4 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline'
-                            type="submit"
-                            disabled
-                        >
-                            <Spinner color="green" />
-                        </button>
-                    ) : (
-                        <button
-                            className='my-4 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline'
-                            type="submit"
-                        >
-                            Add
-                        </button>
-                    )}
+                    <button
+                        className='my-4 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline'
+                        type="submit"
+                        disabled={loading}
+                    >
+                        {loading ? <Spinner color="green" /> : 'Add'}
+                    </button>
                 </form>
             </div>
         </div>
