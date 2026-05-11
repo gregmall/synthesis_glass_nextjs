@@ -7,7 +7,7 @@ import { Card,
     Button,
     Typography,
     Textarea } from "@material-tailwind/react";
-import  { emailFile1, emailFile2, emailFile3, emailFile4, emailTest }  from '../../../emails.json' 
+import  { emailTest }  from '../../../emails.json' 
 
 const EmailPortal = () => {
   
@@ -65,21 +65,35 @@ useEffect(() => {
   const handleBatchEmail = async (e) => {
     e.preventDefault()
     setLoading(true)
-    for (let i = 0; i < emailFile4.length; i++) {
-      const mailRecipient = emailFile4[i];
-      console.log(i);
-      try {
-        await sendEmail({
-          to: mailRecipient,
-          subject: subject,
-          text: message,
-          html: htmlMessage.replace('{{EMAIL}}', encodeURIComponent(mailRecipient))
-        })
-      } catch (error) {
-        console.error(`Error sending email to ${mailRecipient}:`, error)
-      }
+
+    const CONCURRENCY = 10
+    const failures = []
+
+    for (let i = 0; i < emailTest.length; i += CONCURRENCY) {
+      const batch = emailTest.slice(i, i + CONCURRENCY)
+      const results = await Promise.allSettled(
+        batch.map(mailRecipient =>
+          sendEmail({
+            to: mailRecipient,
+            subject,
+            text: message,
+            html: htmlMessage.replace('{{EMAIL}}', encodeURIComponent(mailRecipient))
+          })
+        )
+      )
+      results.forEach((result, j) => {
+        if (result.status === 'rejected') {
+          failures.push(batch[j])
+          console.error(`Error sending email to ${batch[j]}:`, result.reason)
+        }
+      })
     }
-    setEmailStatus('Batch email sending completed!')
+
+    setEmailStatus(
+      failures.length > 0
+        ? `Batch complete. ${emailTest.length - failures.length}/${emailTest.length} sent. Failed: ${failures.join(', ')}`
+        : 'Batch email sending completed!'
+    )
     setLoading(false)
   }
 
@@ -112,9 +126,9 @@ useEffect(() => {
         <Button type="submit" disabled={loading} className='bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline' onSubmit={handleSendEmail}>
           {loading ? 'Sending...' : 'Send Email'}
         </Button> 
-        {/* <Button type="button" disabled={loading} className='ml-4 bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline' onClick={handleBatchEmail}>
+        <Button type="button" disabled={loading} className='ml-4 bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline' onClick={handleBatchEmail}>
           {loading ? 'Sending...' : 'Send Batch Email'}
-        </Button>    */}
+        </Button>   
         </form>
       </Card>   
       </div>
