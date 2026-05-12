@@ -18,6 +18,7 @@ function CustomerCard({ customer, onComplete }) {
       <div>Total: ${customer.history ? customer.history.total : '0'}</div>
       <div>Message: {customer.message}</div>
       <div>Address: {customer.address.street}</div>
+      <div>Apartment: {customer.address.apartment}</div>
       <div>City: {customer.address.city}</div>
       <div>State: {customer.address.state}</div>
       <div>Zip: {customer.address.zip}</div>
