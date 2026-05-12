@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns:v="urn:schemas-microsoft-com:vml" xmlns:o="urn:schemas-microsoft-com:office:office" lang="en">
+<html xmlns:v="urn:schemas-microsoft-com:vml" xmlns:o="urn:schemas-microsoft-com:office:office" lang="en-US">
 
 <head>
 	<title></title>
@@ -7,10 +7,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0"><!--[if mso]>
 <xml><w:WordDocument xmlns:w="urn:schemas-microsoft-com:office:word"><w:DontUseAdvancedTypographyReadingMail/></w:WordDocument>
 <o:OfficeDocumentSettings><o:PixelsPerInch>96</o:PixelsPerInch><o:AllowPNG/></o:OfficeDocumentSettings></xml>
-<![endif]--><!--[if !mso]><!-->
-	<link href="https://fonts.googleapis.com/css2?family=Inter+Tight:ital,wght@0,100..900;1,100..900&amp;display=swap" rel="stylesheet" type="text/css">
-	<link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&amp;display=swap" rel="stylesheet" type="text/css">
-	<link href="https://fonts.googleapis.com/css2?family=Inter+Tight:ital,wght@0,400..900;1,100..900&amp;display=swap" rel="stylesheet" type="text/css"><!--<![endif]-->
+<![endif]-->
 	<style>
 		* {
 			box-sizing: border-box;
@@ -53,21 +50,9 @@
 			line-height: 0;
 		}
 
-		@media (max-width:620px) {
-			.desktop_hide table.icons-outer {
-				display: inline-table !important;
-			}
-
-			.desktop_hide table.icons-inner {
+		@media (max-width:720px) {
+			.social_block .social-table {
 				display: inline-block !important;
-			}
-
-			.icons-inner {
-				text-align: center;
-			}
-
-			.icons-inner td {
-				margin: 0 auto;
 			}
 
 			.image_block div.fullWidth {
@@ -101,118 +86,57 @@
 				max-height: none !important;
 			}
 
-			.reverse {
-				display: table;
-				width: 100%;
+			.row-1 .column-1 .block-1.spacer_block {
+				height: 5px !important;
 			}
 
-			.reverse .column.first {
-				display: table-footer-group !important;
+			.row-3 .column-1 .block-3.spacer_block {
+				height: 35px !important;
 			}
 
-			.reverse .column.last {
-				display: table-header-group !important;
+			.row-3 .column-1 .block-2.heading_block td.pad {
+				padding: 0 10px !important;
 			}
 
-			.row-10 .column-1 .block-1.spacer_block,
-			.row-2 .column-1 .block-1.spacer_block,
-			.row-4 .column-1 .block-1.spacer_block,
-			.row-5 .column-2 .block-2.spacer_block,
-			.row-7 .column-1 .block-1.spacer_block,
-			.row-8 .column-2 .block-2.spacer_block,
-			.row-8 .column-2 .block-3.spacer_block {
-				height: 40px !important;
+			.row-3 .column-1 .block-2.heading_block h1 {
+				font-size: 40px !important;
 			}
 
-			.row-3 .column-1 .block-1.image_block td.pad,
-			.row-5 .column-1,
-			.row-5 .column-2 .block-1.image_block td.pad,
-			.row-6 .column-1 .block-1.image_block td.pad,
-			.row-8 .column-1,
-			.row-8 .column-2 .block-1.image_block td.pad,
-			.row-9 .column-1 .block-1.image_block td.pad {
-				padding: 0 15px !important;
+			.row-5 .column-1 .block-2.heading_block h3,
+			.row-6 .column-1 .block-2.heading_block h3,
+			.row-6 .column-2 .block-2.heading_block h3,
+			.row-7 .column-1 .block-2.heading_block h3,
+			.row-7 .column-2 .block-2.heading_block h3,
+			.row-8 .column-1 .block-2.heading_block h3,
+			.row-8 .column-2 .block-2.heading_block h3,
+			.row-9 .column-1 .block-2.heading_block h3 {
+				font-size: 28px !important;
 			}
 
-			.row-1 .column-1 .block-3.heading_block h1 {
-				text-align: left !important;
-			}
-
-			.row-1 .column-1 .block-3.heading_block h1 {
-				font-size: 48px !important;
-			}
-
-			.row-3 .column-2 .block-1.paragraph_block td.pad,
-			.row-5 .column-1 .block-1.paragraph_block td.pad,
-			.row-6 .column-2 .block-1.paragraph_block td.pad,
-			.row-8 .column-1 .block-1.paragraph_block td.pad,
-			.row-9 .column-2 .block-1.paragraph_block td.pad {
-				padding: 20px 0 10px !important;
-			}
-
-			.row-1 .column-1 .col-pad,
-			.row-11 .column-1 .col-pad,
-			.row-3 .column-2 .col-pad,
-			.row-6 .column-2 .col-pad,
-			.row-9 .column-2 .col-pad {
-				padding: 5px 15px !important;
-			}
-
-			.row-3 .column-1,
-			.row-6 .column-1,
-			.row-9 .column-1 {
-				padding: 0 !important;
-			}
-
-			.row-5 .column-2 .col-pad,
-			.row-8 .column-2 .col-pad {
-				padding: 5px 0 !important;
+			.row-3 .row-content {
+				padding: 10px 0 !important;
 			}
 		}
 	</style><!--[if mso ]><style>sup, sub { font-size: 100% !important; } sup { mso-text-raise:10% } sub { mso-text-raise:-10% }</style> <![endif]-->
 </head>
 
-<body class="body" style="margin: 0; background-color: #ffffff; padding: 0; -webkit-text-size-adjust: none; text-size-adjust: none;">
-	<table class="nl-container" width="100%" border="0" cellpadding="0" cellspacing="0" role="presentation" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt; background-color: #ffffff;">
+<body class="body" style="background-color: #7747ff; margin: 0; padding: 0; -webkit-text-size-adjust: none; text-size-adjust: none;">
+	<table class="nl-container" width="100%" border="0" cellpadding="0" cellspacing="0" role="presentation" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt; background-color: #7747ff; background-repeat: no-repeat; background-size: cover; background-image: url('https://d1oco4z2z1fhwp.cloudfront.net/templates/default/10986/00_Bakcground_pixel.jpg'); background-position: top left;">
 		<tbody>
 			<tr>
 				<td>
-					<table class="row row-1" align="center" width="100%" border="0" cellpadding="0" cellspacing="0" role="presentation" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt; background-color: #000;">
+					<table class="row row-1" align="center" width="100%" border="0" cellpadding="0" cellspacing="0" role="presentation" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt;">
 						<tbody>
 							<tr>
 								<td>
-									<table class="row-content stack" align="center" border="0" cellpadding="0" cellspacing="0" role="presentation" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt; border-radius: 0; color: #000000; width: 600px; margin: 0 auto;" width="600">
+									<table class="row-content stack" align="center" border="0" cellpadding="0" cellspacing="0" role="presentation" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt; border-radius: 0; color: #000000; width: 700px; margin: 0 auto;" width="700">
 										<tbody>
 											<tr>
 												<td class="column column-1" width="100%" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt; font-weight: 400; text-align: left; vertical-align: top;">
 													<table width="100%" border="0" cellpadding="0" cellspacing="0" role="presentation" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt;">
 														<tr>
-															<td class="col-pad" style="padding-left:20px;padding-right:20px;">
-																<div class="spacer_block block-1" style="height:40px;line-height:40px;font-size:1px;">&#8202;</div>
-																<table class="image_block block-2" width="100%" border="0" cellpadding="0" cellspacing="0" role="presentation" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt;">
-																	<tr>
-																		<td class="pad" style="width:100%;" align="center">
-																			<div style="max-width: 560px;"><a href="https://synthesisglass.com" target="_blank"><img src="https://media.beefree.cloud/pub/bfra/nu1w1mkf/jsi/poc/f10/postcardfront.jpg" style="display: block; height: auto; border: 0; width: 100%;" width="560" alt="front splash" title="front splash" height="auto"></a></div>
-																		</td>
-																	</tr>
-																</table>
-																<table class="heading_block block-3" width="100%" border="0" cellpadding="0" cellspacing="0" role="presentation" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt;">
-																	<tr>
-																		<td class="pad" style="width:100%;" align="center">
-																			<h1 style="margin: 0; color: #ffffff; direction: ltr; font-family: 'Inter Tight','Arial'; font-size: 40px; font-weight: 600; letter-spacing: normal; line-height: 1.2; text-align: center; margin-top: 0; margin-bottom: 0; mso-line-height-alt: 48px;"><span class="tinyMce-placeholder" style="word-break: break-word;">Hand Made in Portland Oregon</span></h1>
-																		</td>
-																	</tr>
-																</table>
-																<table class="paragraph_block block-4" width="100%" border="0" cellpadding="0" cellspacing="0" role="presentation" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt; word-break: break-word;">
-																	<tr>
-																		<td class="pad" style="padding-top:10px;">
-																			<div style="color:#ffffff;direction:ltr;font-family:Arial, 'Helvetica Neue', Helvetica, sans-serif;font-size:16px;font-weight:400;letter-spacing:0px;line-height:1.8;text-align:center;mso-line-height-alt:29px;">
-																				<p style="margin: 0;">We make all our glass to order, giving you the option to customize any piece to fit your needs!&nbsp; All US orders get free shipping!</p>
-																			</div>
-																		</td>
-																	</tr>
-																</table>
-																<div class="spacer_block block-5" style="height:40px;line-height:40px;font-size:1px;">&#8202;</div>
+															<td class="col-pad" style="padding-bottom:5px;padding-top:5px;">
+																<div class="spacer_block block-1" style="height:10px;line-height:10px;font-size:1px;">&#8202;</div>
 															</td>
 														</tr>
 													</table>
@@ -228,11 +152,17 @@
 						<tbody>
 							<tr>
 								<td>
-									<table class="row-content stack" align="center" border="0" cellpadding="0" cellspacing="0" role="presentation" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt; border-radius: 0; color: #000000; width: 600px; margin: 0 auto;" width="600">
+									<table class="row-content stack" align="center" border="0" cellpadding="0" cellspacing="0" role="presentation" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt; border-radius: 0; color: #000000; width: 700px; margin: 0 auto;" width="700">
 										<tbody>
 											<tr>
 												<td class="column column-1" width="100%" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt; font-weight: 400; text-align: left; vertical-align: top;">
-													<div class="spacer_block block-1" style="height:40px;line-height:40px;font-size:1px;">&#8202;</div>
+													<table width="100%" border="0" cellpadding="0" cellspacing="0" role="presentation" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt;">
+														<tr>
+															<td class="col-pad" style="padding-bottom:5px;padding-top:5px;">
+																<div class="spacer_block block-1" style="height:6px;line-height:6px;font-size:1px;">&#8202;</div>
+															</td>
+														</tr>
+													</table>
 												</td>
 											</tr>
 										</tbody>
@@ -241,62 +171,49 @@
 							</tr>
 						</tbody>
 					</table>
-					<table class="row row-3" align="center" width="100%" border="0" cellpadding="0" cellspacing="0" role="presentation" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt;">
+					<table class="row row-3" align="center" width="100%" border="0" cellpadding="0" cellspacing="0" role="presentation" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt; background-size: auto;">
 						<tbody>
 							<tr>
 								<td>
-									<table class="row-content stack" align="center" border="0" cellpadding="0" cellspacing="0" role="presentation" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt; border-radius: 0; color: #000000; width: 600px; margin: 0 auto;" width="600">
+									<table class="row-content stack" align="center" border="0" cellpadding="0" cellspacing="0" role="presentation" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt; background-repeat: no-repeat; background-size: cover; background-color: #050021; background-image: url('https://d1oco4z2z1fhwp.cloudfront.net/templates/default/10986/00_Bakcground_header_2X.png'); border-radius: 20px; color: #000000; padding: 10px; width: 700px; margin: 0 auto;" width="700">
 										<tbody>
 											<tr>
-												<td class="column column-1" width="50%" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt; font-weight: 400; text-align: left; vertical-align: top;">
-													<table class="image_block block-1" width="100%" border="0" cellpadding="0" cellspacing="0" role="presentation" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt;">
-														<tr>
-															<td class="pad" style="width:100%;" align="center">
-																<div class="fullWidth" style="max-width: 240px;"><img src="https://media.beefree.cloud/pub/bfra/nu1w1mkf/5z7/s6w/ay6/IMG_7736.jpeg" style="display: block; height: auto; border: 0; width: 100%;" width="240" alt="" title="" height="auto"></div>
-															</td>
-														</tr>
-													</table>
-												</td>
-												<td class="column column-2" width="50%" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt; font-weight: 400; text-align: left; vertical-align: top;">
+												<td>
 													<table width="100%" border="0" cellpadding="0" cellspacing="0" role="presentation" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt;">
-														<tr>
-															<td class="col-pad" style="padding-right:60px;">
-																<table class="paragraph_block block-1" width="100%" border="0" cellpadding="0" cellspacing="0" role="presentation" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt; word-break: break-word;">
-																	<tr>
-																		<td class="pad" style="padding-bottom:10px;">
-																			<div style="color:#333333;direction:ltr;font-family:Arial, 'Helvetica Neue', Helvetica, sans-serif;font-size:14px;font-weight:400;letter-spacing:2px;line-height:1.2;text-align:left;mso-line-height-alt:17px;">&nbsp;</div>
-																		</td>
-																	</tr>
-																</table>
-																<table class="heading_block block-2" width="100%" border="0" cellpadding="0" cellspacing="0" role="presentation" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt;">
-																	<tr>
-																		<td class="pad" style="width:100%;padding-top:10px;padding-bottom:10px;" align="center">
-																			<h2 style="margin: 0; color: #000; direction: ltr; font-family: 'Inter Tight','Arial'; font-size: 18px; font-weight: 600; letter-spacing: normal; line-height: 1.2; text-align: left; margin-top: 0; margin-bottom: 0; mso-line-height-alt: 22px;"><span class="tinyMce-placeholder" style="word-break: break-word;">Hand pipes!</span></h2>
-																		</td>
-																	</tr>
-																</table>
-																<table class="paragraph_block block-3" width="100%" border="0" cellpadding="0" cellspacing="0" role="presentation" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt; word-break: break-word;">
-																	<tr>
-																		<td class="pad" style="padding-top:10px;padding-bottom:10px;">
-																			<div style="color:#333333;direction:ltr;font-family:Arial, 'Helvetica Neue', Helvetica, sans-serif;font-size:14px;font-weight:400;letter-spacing:0px;line-height:1.5;text-align:left;mso-line-height-alt:21px;">
-																				<p style="margin: 0;">We have a wide variety of hand pipes in tons of colors.&nbsp; All customizable.&nbsp;</p>
-																			</div>
-																		</td>
-																	</tr>
-																</table>
-																<table class="button_block block-4" width="100%" border="0" cellpadding="0" cellspacing="0" role="presentation" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt;">
-																	<tr>
-																		<td class="pad" style="padding-top:10px;padding-bottom:10px;" align="left"><a href="https://synthesisglass.com/glass" target="_blank" style="color:#000;text-decoration:none;"><!--[if mso]>
-<v:roundrect xmlns:v="urn:schemas-microsoft-com:vml" xmlns:w="urn:schemas-microsoft-com:office:word"  href="https://synthesisglass.com/glass"  style="height:44px;width:106px;v-text-anchor:middle;" arcsize="0%" fill="false">
-<v:stroke dashstyle="Solid" weight="1px" color="#000"/>
-<w:anchorlock/>
-<v:textbox inset="0px,0px,0px,0px">
-<center dir="false" style="color:#000;font-family:sans-serif;font-size:12px">
-<![endif]--><span class="button" style="background-color: transparent; border-bottom: 1px solid #000; border-left: 1px solid #000; border-radius: 0px; border-right: 1px solid #000; border-top: 1px solid #000; color: #000; display: inline-block; font-family: 'Inter Tight','Arial'; font-size: 12px; font-weight: 600; mso-border-alt: none; text-align: center; width: 45%; word-break: keep-all; letter-spacing: normal;"><span class="btn-pad" style="word-break: break-word; padding-left: 20px; padding-right: 20px; padding-top: 10px; padding-bottom: 10px; display: block;"><span style="word-break: break-word; line-height: 24px;">Shop Now</span></span></span><!--[if mso]></center></v:textbox></v:roundrect><![endif]--></a></td>
-																	</tr>
-																</table>
-															</td>
-														</tr>
+														<tbody>
+															<tr>
+																<td class="column column-1" width="100%" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt; font-weight: 400; text-align: left; vertical-align: top;">
+																	<table width="100%" border="0" cellpadding="0" cellspacing="0" role="presentation" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt;">
+																		<tr>
+																			<td class="col-pad" style="padding-bottom:5px;padding-top:5px;">
+																				<table class="image_block mobile_hide block-1" width="100%" border="0" cellpadding="0" cellspacing="0" role="presentation" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt;">
+																					<tr>
+																						<td class="pad" style="width:100%;" align="center">
+																							<div style="max-width: 680px;"><a href="https://synthesisglass.com" target="_blank"><img src="https://media.beefree.cloud/pub/bfra/nu1w1mkf/3a2/2kw/dta/beanie-Picsart-BackgroundRemover_1.png" style="display: block; height: auto; border: 0; width: 100%;" width="680" alt="a black sports car with red rims" title="a black sports car with red rims" height="auto"></a></div>
+																						</td>
+																					</tr>
+																				</table>
+																				<table class="heading_block block-2" width="100%" border="0" cellpadding="0" cellspacing="0" role="presentation" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt;">
+																					<tr>
+																						<td class="pad" style="width:100%;padding-left:60px;padding-right:60px;" align="center">
+																							<h1 style="margin: 0; color: #ffffff; direction: ltr; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 60px; font-weight: 700; letter-spacing: -2px; line-height: 1; text-align: center; margin-top: 0; margin-bottom: 0; mso-line-height-alt: 60px;"><span class="tinyMce-placeholder" style="word-break: break-word;">Get Ready for Sherlock Summer</span></h1>
+																						</td>
+																					</tr>
+																				</table>
+																				<div class="spacer_block block-3" style="height:60px;line-height:60px;font-size:1px;">&#8202;</div>
+																				<table class="image_block block-4" width="100%" border="0" cellpadding="0" cellspacing="0" role="presentation" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt;">
+																					<tr>
+																						<td class="pad" style="width:100%;" align="center">
+																							<div style="max-width: 680px;"><a href="https://synthesisglass.com" target="_blank"><img src="https://media.beefree.cloud/pub/bfra/nu1w1mkf/fxf/d0h/yc6/IMG_4980-Picsart-BackgroundRemover_1.jpeg" style="display: block; height: auto; border: 0; width: 100%;" width="680" alt="a black and white image of a car" title="a black and white image of a car" height="auto"></a></div>
+																						</td>
+																					</tr>
+																				</table>
+																			</td>
+																		</tr>
+																	</table>
+																</td>
+															</tr>
+														</tbody>
 													</table>
 												</td>
 											</tr>
@@ -310,11 +227,23 @@
 						<tbody>
 							<tr>
 								<td>
-									<table class="row-content stack" align="center" border="0" cellpadding="0" cellspacing="0" role="presentation" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt; border-radius: 0; color: #000000; width: 600px; margin: 0 auto;" width="600">
+									<table class="row-content stack" align="center" border="0" cellpadding="0" cellspacing="0" role="presentation" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt; border-radius: 0; color: #000000; width: 700px; margin: 0 auto;" width="700">
 										<tbody>
 											<tr>
 												<td class="column column-1" width="100%" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt; font-weight: 400; text-align: left; vertical-align: top;">
-													<div class="spacer_block block-1" style="height:40px;line-height:40px;font-size:1px;">&#8202;</div>
+													<div class="spacer_block block-1" style="height:5px;line-height:5px;font-size:1px;">&#8202;</div>
+													<table class="button_block block-2" width="100%" border="0" cellpadding="10" cellspacing="0" role="presentation" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt;">
+														<tr>
+															<td class="pad" align="center"><a href="https://synthesisglass.com/glass" target="_blank" style="color:#ffffff;text-decoration:none;"><!--[if mso]>
+<v:roundrect xmlns:v="urn:schemas-microsoft-com:vml" xmlns:w="urn:schemas-microsoft-com:office:word"  href="https://synthesisglass.com/glass"  style="height:42px;width:116px;v-text-anchor:middle;" arcsize="10%" fillcolor="#7747FF">
+<v:stroke dashstyle="Solid" weight="0px" color="#7747FF"/>
+<w:anchorlock/>
+<v:textbox inset="0px,0px,0px,0px">
+<center dir="false" style="color:#ffffff;font-family:sans-serif;font-size:16px">
+<![endif]--><span class="button" style="background-color: #7747FF; border-bottom: 0px solid transparent; border-left: 0px solid transparent; border-radius: 4px; border-right: 0px solid transparent; border-top: 0px solid transparent; color: #ffffff; display: inline-block; font-family: Helvetica Neue, Helvetica, Arial, sans-serif; font-size: 16px; font-weight: 400; mso-border-alt: none; text-align: center; width: auto; word-break: keep-all; letter-spacing: normal;"><span class="btn-pad" style="word-break: break-word; padding-left: 20px; padding-right: 20px; padding-top: 5px; padding-bottom: 5px; display: block;"><span style="word-break: break-word; line-height: 32px;">Shop now!</span></span></span><!--[if mso]></center></v:textbox></v:roundrect><![endif]--></a></td>
+														</tr>
+													</table>
+													<div class="spacer_block block-3" style="height:10px;line-height:10px;font-size:1px;">&#8202;</div>
 												</td>
 											</tr>
 										</tbody>
@@ -327,57 +256,22 @@
 						<tbody>
 							<tr>
 								<td>
-									<table class="row-content stack" align="center" border="0" cellpadding="0" cellspacing="0" role="presentation" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt; border-radius: 0; color: #000000; width: 600px; margin: 0 auto;" width="600">
+									<table class="row-content stack" align="center" border="0" cellpadding="0" cellspacing="0" role="presentation" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt; background-color: #050021; border-radius: 20px 20px 0 0; color: #000000; width: 700px; margin: 0 auto;" width="700">
 										<tbody>
-											<tr class="reverse">
-												<td class="column column-1 first" width="50%" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt; font-weight: 400; text-align: left; vertical-align: top;">
-													<table class="paragraph_block block-1" width="100%" border="0" cellpadding="0" cellspacing="0" role="presentation" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt; word-break: break-word;">
-														<tr>
-															<td class="pad" style="padding-bottom:10px;">
-																<div style="color:#333333;direction:ltr;font-family:Arial, 'Helvetica Neue', Helvetica, sans-serif;font-size:14px;font-weight:400;letter-spacing:2px;line-height:1.2;text-align:left;mso-line-height-alt:17px;">&nbsp;</div>
-															</td>
-														</tr>
-													</table>
-													<table class="heading_block block-2" width="100%" border="0" cellpadding="0" cellspacing="0" role="presentation" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt;">
-														<tr>
-															<td class="pad" style="width:100%;padding-top:10px;padding-bottom:10px;" align="center">
-																<h2 style="margin: 0; color: #000; direction: ltr; font-family: 'Inter Tight','Arial'; font-size: 18px; font-weight: 600; letter-spacing: normal; line-height: 1.2; text-align: left; margin-top: 0; margin-bottom: 0; mso-line-height-alt: 22px;"><span class="tinyMce-placeholder" style="word-break: break-word;">Sherlock Style Pipes!</span></h2>
-															</td>
-														</tr>
-													</table>
-													<table class="paragraph_block block-3" width="100%" border="0" cellpadding="0" cellspacing="0" role="presentation" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt; word-break: break-word;">
-														<tr>
-															<td class="pad" style="padding-top:10px;padding-bottom:10px;">
-																<div style="color:#333333;direction:ltr;font-family:Arial, 'Helvetica Neue', Helvetica, sans-serif;font-size:14px;font-weight:400;letter-spacing:0px;line-height:1.5;text-align:left;mso-line-height-alt:21px;">
-																	<p style="margin: 0;">Huge selection of sherlock style pipes, this one with UV reactive color!&nbsp; All customizable.&nbsp;</p>
-																</div>
-															</td>
-														</tr>
-													</table>
-													<table class="button_block block-4" width="100%" border="0" cellpadding="0" cellspacing="0" role="presentation" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt;">
-														<tr>
-															<td class="pad" style="padding-top:10px;padding-bottom:10px;" align="left"><a href="https://synthesisglass.com/glass" target="_blank" style="color:#000;text-decoration:none;"><!--[if mso]>
-<v:roundrect xmlns:v="urn:schemas-microsoft-com:vml" xmlns:w="urn:schemas-microsoft-com:office:word"  href="https://synthesisglass.com/glass"  style="height:44px;width:133px;v-text-anchor:middle;" arcsize="0%" fill="false">
-<v:stroke dashstyle="Solid" weight="1px" color="#000"/>
-<w:anchorlock/>
-<v:textbox inset="0px,0px,0px,0px">
-<center dir="false" style="color:#000;font-family:sans-serif;font-size:12px">
-<![endif]--><span class="button" style="background-color: transparent; border-bottom: 1px solid #000; border-left: 1px solid #000; border-radius: 0px; border-right: 1px solid #000; border-top: 1px solid #000; color: #000; display: inline-block; font-family: 'Inter Tight','Arial'; font-size: 12px; font-weight: 600; mso-border-alt: none; text-align: center; width: 45%; word-break: keep-all; letter-spacing: normal;"><span class="btn-pad" style="word-break: break-word; padding-left: 20px; padding-right: 20px; padding-top: 10px; padding-bottom: 10px; display: block;"><span style="word-break: break-word; line-height: 24px;">Shop Now</span></span></span><!--[if mso]></center></v:textbox></v:roundrect><![endif]--></a></td>
-														</tr>
-													</table>
-												</td>
-												<td class="column column-2 last" width="50%" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt; font-weight: 400; text-align: left; vertical-align: top;">
+											<tr>
+												<td class="column column-1" width="100%" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt; font-weight: 400; text-align: left; vertical-align: top;">
 													<table width="100%" border="0" cellpadding="0" cellspacing="0" role="presentation" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt;">
 														<tr>
-															<td class="col-pad" style="padding-right:60px;">
-																<table class="image_block block-1" width="100%" border="0" cellpadding="0" cellspacing="0" role="presentation" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt;">
+															<td class="col-pad" style="padding-bottom:5px;padding-top:5px;">
+																<div class="spacer_block block-1" style="height:30px;line-height:30px;font-size:1px;">&#8202;</div>
+																<table class="heading_block block-2" width="100%" border="0" cellpadding="0" cellspacing="0" role="presentation" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt;">
 																	<tr>
-																		<td class="pad" style="width:100%;" align="center">
-																			<div class="fullWidth" style="max-width: 240px;"><img src="https://media.beefree.cloud/pub/bfra/nu1w1mkf/x6j/fjh/5w9/IMG_8395.jpeg" style="display: block; height: auto; border: 0; width: 100%;" width="240" alt="" title="" height="auto"></div>
+																		<td class="pad" style="width:100%;padding-top:10px;padding-bottom:5px;padding-left:10px;padding-right:10px;" align="center">
+																			<h3 style="margin: 0; color: #ffffff; direction: ltr; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 34px; font-weight: 700; letter-spacing: -1px; line-height: 1; text-align: center; margin-top: 0; margin-bottom: 0; mso-line-height-alt: 34px;"><span class="tinyMce-placeholder" style="word-break: break-word;">Here's a sample of what you will find</span></h3>
 																		</td>
 																	</tr>
 																</table>
-																<div class="spacer_block block-2" style="height:40px;line-height:40px;font-size:1px;">&#8202;</div>
+																<div class="spacer_block block-3" style="height:10px;line-height:10px;font-size:1px;">&#8202;</div>
 															</td>
 														</tr>
 													</table>
@@ -393,56 +287,44 @@
 						<tbody>
 							<tr>
 								<td>
-									<table class="row-content stack" align="center" border="0" cellpadding="0" cellspacing="0" role="presentation" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt; border-radius: 0; color: #000000; width: 600px; margin: 0 auto;" width="600">
+									<table class="row-content stack" align="center" border="0" cellpadding="0" cellspacing="0" role="presentation" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt; background-color: #050021; border-radius: 0; color: #000000; width: 700px; margin: 0 auto;" width="700">
 										<tbody>
 											<tr>
 												<td class="column column-1" width="50%" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt; font-weight: 400; text-align: left; vertical-align: top;">
-													<table class="image_block block-1" width="100%" border="0" cellpadding="0" cellspacing="0" role="presentation" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt;">
+													<table class="image_block block-1" width="100%" border="0" cellpadding="20" cellspacing="0" role="presentation" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt;">
 														<tr>
 															<td class="pad" style="width:100%;" align="center">
-																<div class="fullWidth" style="max-width: 240px;"><img src="https://media.beefree.cloud/pub/bfra/nu1w1mkf/ckw/0a0/7pz/IMG_8229.jpeg" style="display: block; height: auto; border: 0; width: 100%;" width="240" alt="" title="" height="auto"></div>
+																<div style="max-width: 310px;"><a href="https://synthesisglass.com/glass" target="_blank"><img src="https://media.beefree.cloud/pub/bfra/nu1w1mkf/qw9/skt/b04/IMG_4896-Picsart-BackgroundRemover_1.jpeg" style="display: block; height: auto; border: 0; width: 100%;" width="310" alt="a white car driving on a road" title="a white car driving on a road" height="auto"></a></div>
+															</td>
+														</tr>
+													</table>
+													<table class="heading_block block-2" width="100%" border="0" cellpadding="0" cellspacing="0" role="presentation" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt;">
+														<tr>
+															<td class="pad" style="width:100%;padding-top:10px;padding-bottom:10px;padding-left:20px;padding-right:10px;" align="center">
+																<h3 style="margin: 0; color: #ffffff; direction: ltr; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 30px; font-weight: 700; letter-spacing: -1px; line-height: 0.9; text-align: left; margin-top: 0; margin-bottom: 0; mso-line-height-alt: 27px;"><span class="tinyMce-placeholder" style="word-break: break-word;">Two Toned Travelers</span></h3>
+															</td>
+														</tr>
+													</table>
+													<table class="paragraph_block block-3" width="100%" border="0" cellpadding="0" cellspacing="0" role="presentation" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt; word-break: break-word;">
+														<tr>
+															<td class="pad" style="padding-top:10px;padding-bottom:10px;padding-left:20px;padding-right:10px;">
+																<div style="color:#ffffff;direction:ltr;font-family:Helvetica Neue, Helvetica, Arial, sans-serif;font-size:16px;font-weight:400;letter-spacing:0px;line-height:1.2;text-align:left;mso-line-height-alt:19px;">&nbsp;</div>
 															</td>
 														</tr>
 													</table>
 												</td>
 												<td class="column column-2" width="50%" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt; font-weight: 400; text-align: left; vertical-align: top;">
-													<table width="100%" border="0" cellpadding="0" cellspacing="0" role="presentation" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt;">
+													<table class="image_block block-1" width="100%" border="0" cellpadding="20" cellspacing="0" role="presentation" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt;">
 														<tr>
-															<td class="col-pad" style="padding-right:60px;">
-																<table class="paragraph_block block-1" width="100%" border="0" cellpadding="0" cellspacing="0" role="presentation" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt; word-break: break-word;">
-																	<tr>
-																		<td class="pad" style="padding-bottom:10px;">
-																			<div style="color:#333333;direction:ltr;font-family:Arial, 'Helvetica Neue', Helvetica, sans-serif;font-size:14px;font-weight:400;letter-spacing:2px;line-height:1.2;text-align:left;mso-line-height-alt:17px;">&nbsp;</div>
-																		</td>
-																	</tr>
-																</table>
-																<table class="heading_block block-2" width="100%" border="0" cellpadding="0" cellspacing="0" role="presentation" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt;">
-																	<tr>
-																		<td class="pad" style="width:100%;padding-top:10px;padding-bottom:10px;" align="center">
-																			<h2 style="margin: 0; color: #000; direction: ltr; font-family: 'Inter Tight','Arial'; font-size: 18px; font-weight: 600; letter-spacing: normal; line-height: 1.2; text-align: left; margin-top: 0; margin-bottom: 0; mso-line-height-alt: 22px;"><span class="tinyMce-placeholder" style="word-break: break-word;">Chillum and more chillums!</span></h2>
-																		</td>
-																	</tr>
-																</table>
-																<table class="paragraph_block block-3" width="100%" border="0" cellpadding="0" cellspacing="0" role="presentation" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt; word-break: break-word;">
-																	<tr>
-																		<td class="pad" style="padding-top:10px;padding-bottom:10px;">
-																			<div style="color:#333333;direction:ltr;font-family:Arial, 'Helvetica Neue', Helvetica, sans-serif;font-size:14px;font-weight:400;letter-spacing:0px;line-height:1.5;text-align:left;mso-line-height-alt:21px;">
-																				<p style="margin: 0;">Large selection of chillums with a variety of stylings, this one with a Nebulous color pattern. All customizable.&nbsp;</p>
-																			</div>
-																		</td>
-																	</tr>
-																</table>
-																<table class="button_block block-4" width="100%" border="0" cellpadding="0" cellspacing="0" role="presentation" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt;">
-																	<tr>
-																		<td class="pad" style="padding-top:10px;padding-bottom:10px;" align="left"><a href="https://synthesisglass.com/glass" target="_blank" style="color:#000;text-decoration:none;"><!--[if mso]>
-<v:roundrect xmlns:v="urn:schemas-microsoft-com:vml" xmlns:w="urn:schemas-microsoft-com:office:word"  href="https://synthesisglass.com/glass"  style="height:44px;width:106px;v-text-anchor:middle;" arcsize="0%" fill="false">
-<v:stroke dashstyle="Solid" weight="1px" color="#000"/>
-<w:anchorlock/>
-<v:textbox inset="0px,0px,0px,0px">
-<center dir="false" style="color:#000;font-family:sans-serif;font-size:12px">
-<![endif]--><span class="button" style="background-color: transparent; border-bottom: 1px solid #000; border-left: 1px solid #000; border-radius: 0px; border-right: 1px solid #000; border-top: 1px solid #000; color: #000; display: inline-block; font-family: 'Inter Tight','Arial'; font-size: 12px; font-weight: 600; mso-border-alt: none; text-align: center; width: 45%; word-break: keep-all; letter-spacing: normal;"><span class="btn-pad" style="word-break: break-word; padding-left: 20px; padding-right: 20px; padding-top: 10px; padding-bottom: 10px; display: block;"><span style="word-break: break-word; line-height: 24px;">Shop Now</span></span></span><!--[if mso]></center></v:textbox></v:roundrect><![endif]--></a></td>
-																	</tr>
-																</table>
+															<td class="pad" style="width:100%;" align="center">
+																<div style="max-width: 310px;"><a href="https://synthesisglass.com/glass" target="_blank"><img src="https://media.beefree.cloud/pub/bfra/nu1w1mkf/21h/i2b/iwq/il_fullxfull%2C2038851469_nlhg-Picsart-BackgroundRemover.jpg" style="display: block; height: auto; border: 0; width: 100%;" width="310" alt="a person driving a car" title="a person driving a car" height="auto"></a></div>
+															</td>
+														</tr>
+													</table>
+													<table class="heading_block block-2" width="100%" border="0" cellpadding="0" cellspacing="0" role="presentation" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt;">
+														<tr>
+															<td class="pad" style="width:100%;padding-top:10px;padding-bottom:10px;padding-left:20px;padding-right:10px;" align="center">
+																<h3 style="margin: 0; color: #ffffff; direction: ltr; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 30px; font-weight: 700; letter-spacing: -1px; line-height: 0.9; text-align: left; margin-top: 0; margin-bottom: 0; mso-line-height-alt: 27px;"><span class="tinyMce-placeholder" style="word-break: break-word;">Shapely Murine Image Sherlocks</span></h3>
 															</td>
 														</tr>
 													</table>
@@ -458,11 +340,54 @@
 						<tbody>
 							<tr>
 								<td>
-									<table class="row-content stack" align="center" border="0" cellpadding="0" cellspacing="0" role="presentation" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt; border-radius: 0; color: #000000; width: 600px; margin: 0 auto;" width="600">
+									<table class="row-content stack" align="center" border="0" cellpadding="0" cellspacing="0" role="presentation" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt; background-color: #050021; border-radius: 0; color: #000000; width: 700px; margin: 0 auto;" width="700">
 										<tbody>
 											<tr>
-												<td class="column column-1" width="100%" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt; font-weight: 400; text-align: left; vertical-align: top;">
-													<div class="spacer_block block-1" style="height:40px;line-height:40px;font-size:1px;">&#8202;</div>
+												<td class="column column-1" width="50%" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt; font-weight: 400; text-align: left; vertical-align: top;">
+													<table class="image_block block-1" width="100%" border="0" cellpadding="20" cellspacing="0" role="presentation" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt;">
+														<tr>
+															<td class="pad" style="width:100%;" align="center">
+																<div style="max-width: 310px;"><a href="https://synthesisglass.com/glass" target="_blank"><img src="https://media.beefree.cloud/pub/bfra/nu1w1mkf/yo8/79b/qui/IMG_8091-Picsart-BackgroundRemover.jpeg" style="display: block; height: auto; border: 0; width: 100%;" width="310" alt="a white car driving on a road" title="a white car driving on a road" height="auto"></a></div>
+															</td>
+														</tr>
+													</table>
+													<table class="heading_block block-2" width="100%" border="0" cellpadding="0" cellspacing="0" role="presentation" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt;">
+														<tr>
+															<td class="pad" style="width:100%;padding-top:10px;padding-bottom:10px;padding-left:20px;padding-right:10px;" align="center">
+																<h3 style="margin: 0; color: #ffffff; direction: ltr; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 30px; font-weight: 700; letter-spacing: -1px; line-height: 0.9; text-align: left; margin-top: 0; margin-bottom: 0; mso-line-height-alt: 27px;"><span class="tinyMce-placeholder" style="word-break: break-word;">Full Color Cane Travelers</span></h3>
+															</td>
+														</tr>
+													</table>
+													<table class="paragraph_block block-3" width="100%" border="0" cellpadding="0" cellspacing="0" role="presentation" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt; word-break: break-word;">
+														<tr>
+															<td class="pad" style="padding-top:10px;padding-bottom:10px;padding-left:20px;padding-right:10px;">
+																<div style="color:#ffffff;direction:ltr;font-family:Helvetica Neue, Helvetica, Arial, sans-serif;font-size:16px;font-weight:400;letter-spacing:0px;line-height:1.2;text-align:left;mso-line-height-alt:19px;">&nbsp;</div>
+															</td>
+														</tr>
+													</table>
+												</td>
+												<td class="column column-2" width="50%" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt; font-weight: 400; text-align: left; vertical-align: top;">
+													<table class="image_block block-1" width="100%" border="0" cellpadding="20" cellspacing="0" role="presentation" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt;">
+														<tr>
+															<td class="pad" style="width:100%;" align="center">
+																<div style="max-width: 310px;"><a href="https://synthesisglass.com/glass" target="_blank"><img src="https://media.beefree.cloud/pub/bfra/nu1w1mkf/q86/gjq/4rd/IMG_8395-Picsart-BackgroundRemover.jpeg" style="display: block; height: auto; border: 0; width: 100%;" width="310" alt="a person driving a car" title="a person driving a car" height="auto"></a></div>
+															</td>
+														</tr>
+													</table>
+													<table class="heading_block block-2" width="100%" border="0" cellpadding="0" cellspacing="0" role="presentation" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt;">
+														<tr>
+															<td class="pad" style="width:100%;padding-top:10px;padding-bottom:10px;padding-left:20px;padding-right:10px;" align="center">
+																<h3 style="margin: 0; color: #ffffff; direction: ltr; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 30px; font-weight: 700; letter-spacing: -1px; line-height: 0.9; text-align: left; margin-top: 0; margin-bottom: 0; mso-line-height-alt: 27px;"><span class="tinyMce-placeholder" style="word-break: break-word;">Full Cane UV Reactive Travelers</span></h3>
+															</td>
+														</tr>
+													</table>
+													<table class="paragraph_block block-3" width="100%" border="0" cellpadding="0" cellspacing="0" role="presentation" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt; word-break: break-word;">
+														<tr>
+															<td class="pad" style="padding-top:10px;padding-bottom:10px;padding-left:20px;padding-right:10px;">
+																<div style="color:#ffffff;direction:ltr;font-family:Helvetica Neue, Helvetica, Arial, sans-serif;font-size:16px;font-weight:400;letter-spacing:0px;line-height:1.5;text-align:left;mso-line-height-alt:24px;">&nbsp;</div>
+															</td>
+														</tr>
+													</table>
 												</td>
 											</tr>
 										</tbody>
@@ -475,58 +400,51 @@
 						<tbody>
 							<tr>
 								<td>
-									<table class="row-content stack" align="center" border="0" cellpadding="0" cellspacing="0" role="presentation" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt; border-radius: 0; color: #000000; width: 600px; margin: 0 auto;" width="600">
+									<table class="row-content stack" align="center" border="0" cellpadding="0" cellspacing="0" role="presentation" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt; background-color: #050021; border-radius: 0; color: #000000; width: 700px; margin: 0 auto;" width="700">
 										<tbody>
-											<tr class="reverse">
-												<td class="column column-1 first" width="50%" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt; font-weight: 400; text-align: left; vertical-align: top;">
-													<table class="paragraph_block block-1" width="100%" border="0" cellpadding="0" cellspacing="0" role="presentation" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt; word-break: break-word;">
+											<tr>
+												<td class="column column-1" width="50%" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt; font-weight: 400; text-align: left; vertical-align: top;">
+													<table class="image_block block-1" width="100%" border="0" cellpadding="20" cellspacing="0" role="presentation" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt;">
 														<tr>
-															<td class="pad" style="padding-bottom:10px;">
-																<div style="color:#333333;direction:ltr;font-family:Arial, 'Helvetica Neue', Helvetica, sans-serif;font-size:14px;font-weight:400;letter-spacing:2px;line-height:1.2;text-align:left;mso-line-height-alt:17px;">&nbsp;</div>
+															<td class="pad" style="width:100%;" align="center">
+																<div style="max-width: 310px;"><a href="https://synthesisglass.com/glass" target="_blank"><img src="https://media.beefree.cloud/pub/bfra/nu1w1mkf/kst/1b5/ztm/il_fullxfull%2C6167535269_6tzp-Picsart-BackgroundRemover.jpg" style="display: block; height: auto; border: 0; width: 100%;" width="310" alt="a white car driving on a road" title="a white car driving on a road" height="auto"></a></div>
 															</td>
 														</tr>
 													</table>
 													<table class="heading_block block-2" width="100%" border="0" cellpadding="0" cellspacing="0" role="presentation" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt;">
 														<tr>
-															<td class="pad" style="width:100%;padding-top:10px;padding-bottom:10px;" align="center">
-																<h2 style="margin: 0; color: #000; direction: ltr; font-family: 'Inter Tight','Arial'; font-size: 18px; font-weight: 600; letter-spacing: normal; line-height: 1.2; text-align: left; margin-top: 0; margin-bottom: 0; mso-line-height-alt: 22px;"><span class="tinyMce-placeholder" style="word-break: break-word;">Bowls? Indeed!&nbsp; 14mm or 18mm</span></h2>
+															<td class="pad" style="width:100%;padding-top:10px;padding-bottom:10px;padding-left:20px;padding-right:10px;" align="center">
+																<h3 style="margin: 0; color: #ffffff; direction: ltr; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 30px; font-weight: 700; letter-spacing: -1px; line-height: 0.9; text-align: left; margin-top: 0; margin-bottom: 0; mso-line-height-alt: 27px;"><span class="tinyMce-placeholder" style="word-break: break-word;">Full Cane Stovepipes</span></h3>
 															</td>
 														</tr>
 													</table>
 													<table class="paragraph_block block-3" width="100%" border="0" cellpadding="0" cellspacing="0" role="presentation" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt; word-break: break-word;">
 														<tr>
-															<td class="pad" style="padding-top:10px;padding-bottom:10px;">
-																<div style="color:#333333;direction:ltr;font-family:Arial, 'Helvetica Neue', Helvetica, sans-serif;font-size:14px;font-weight:400;letter-spacing:0px;line-height:1.5;text-align:left;mso-line-height-alt:21px;">
-																	<p style="margin: 0;">Any bowl you need we can make!&nbsp; Choose the size fitting you need and we will make it!</p>
-																</div>
+															<td class="pad" style="padding-top:10px;padding-bottom:10px;padding-left:20px;padding-right:10px;">
+																<div style="color:#ffffff;direction:ltr;font-family:Helvetica Neue, Helvetica, Arial, sans-serif;font-size:16px;font-weight:400;letter-spacing:0px;line-height:1.2;text-align:left;mso-line-height-alt:19px;">&nbsp;</div>
 															</td>
 														</tr>
 													</table>
-													<table class="button_block block-4" width="100%" border="0" cellpadding="0" cellspacing="0" role="presentation" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt;">
+												</td>
+												<td class="column column-2" width="50%" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt; font-weight: 400; text-align: left; vertical-align: top;">
+													<table class="image_block block-1" width="100%" border="0" cellpadding="20" cellspacing="0" role="presentation" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt;">
 														<tr>
-															<td class="pad" style="padding-top:10px;padding-bottom:10px;" align="left"><a href="https://synthesisglass.com/glass" target="_blank" style="color:#000;text-decoration:none;"><!--[if mso]>
-<v:roundrect xmlns:v="urn:schemas-microsoft-com:vml" xmlns:w="urn:schemas-microsoft-com:office:word"  href="https://synthesisglass.com/glass"  style="height:44px;width:133px;v-text-anchor:middle;" arcsize="0%" fill="false">
-<v:stroke dashstyle="Solid" weight="1px" color="#000"/>
-<w:anchorlock/>
-<v:textbox inset="0px,0px,0px,0px">
-<center dir="false" style="color:#000;font-family:sans-serif;font-size:12px">
-<![endif]--><span class="button" style="background-color: transparent; border-bottom: 1px solid #000; border-left: 1px solid #000; border-radius: 0px; border-right: 1px solid #000; border-top: 1px solid #000; color: #000; display: inline-block; font-family: 'Inter Tight','Arial'; font-size: 12px; font-weight: 600; mso-border-alt: none; text-align: center; width: 45%; word-break: keep-all; letter-spacing: normal;"><span class="btn-pad" style="word-break: break-word; padding-left: 20px; padding-right: 20px; padding-top: 10px; padding-bottom: 10px; display: block;"><span style="word-break: break-word; line-height: 24px;">Shop Now</span></span></span><!--[if mso]></center></v:textbox></v:roundrect><![endif]--></a></td>
+															<td class="pad" style="width:100%;" align="center">
+																<div style="max-width: 310px;"><a href="https://synthesisglass.com/glass" target="_blank"><img src="https://media.beefree.cloud/pub/bfra/nu1w1mkf/ljp/r8i/izb/il_fullxfull%2C7205051190_9f0y-Picsart-BackgroundRemover.jpg" style="display: block; height: auto; border: 0; width: 100%;" width="310" alt="a person driving a car" title="a person driving a car" height="auto"></a></div>
+															</td>
 														</tr>
 													</table>
-												</td>
-												<td class="column column-2 last" width="50%" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt; font-weight: 400; text-align: left; vertical-align: top;">
-													<table width="100%" border="0" cellpadding="0" cellspacing="0" role="presentation" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt;">
+													<table class="heading_block block-2" width="100%" border="0" cellpadding="0" cellspacing="0" role="presentation" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt;">
 														<tr>
-															<td class="col-pad" style="padding-right:60px;">
-																<table class="image_block block-1" width="100%" border="0" cellpadding="0" cellspacing="0" role="presentation" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt;">
-																	<tr>
-																		<td class="pad" style="width:100%;" align="center">
-																			<div class="fullWidth" style="max-width: 240px;"><img src="https://media.beefree.cloud/pub/bfra/nu1w1mkf/ode/o2t/xc7/IMG_8302.jpeg" style="display: block; height: auto; border: 0; width: 100%;" width="240" alt="" title="" height="auto"></div>
-																		</td>
-																	</tr>
-																</table>
-																<div class="spacer_block block-2" style="height:40px;line-height:40px;font-size:1px;">&#8202;</div>
-																<div class="spacer_block block-3" style="height:40px;line-height:40px;font-size:1px;">&#8202;</div>
+															<td class="pad" style="width:100%;padding-top:10px;padding-bottom:10px;padding-left:20px;padding-right:10px;" align="center">
+																<h3 style="margin: 0; color: #ffffff; direction: ltr; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 30px; font-weight: 700; letter-spacing: -1px; line-height: 0.9; text-align: left; margin-top: 0; margin-bottom: 0; mso-line-height-alt: 27px;"><span class="tinyMce-placeholder" style="word-break: break-word;">Full Cane UV Reactive Stovepipes</span></h3>
+															</td>
+														</tr>
+													</table>
+													<table class="paragraph_block block-3" width="100%" border="0" cellpadding="0" cellspacing="0" role="presentation" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt; word-break: break-word;">
+														<tr>
+															<td class="pad" style="padding-top:10px;padding-bottom:10px;padding-left:20px;padding-right:10px;">
+																<div style="color:#ffffff;direction:ltr;font-family:Helvetica Neue, Helvetica, Arial, sans-serif;font-size:16px;font-weight:400;letter-spacing:0px;line-height:1.5;text-align:left;mso-line-height-alt:24px;">&nbsp;</div>
 															</td>
 														</tr>
 													</table>
@@ -542,59 +460,30 @@
 						<tbody>
 							<tr>
 								<td>
-									<table class="row-content stack" align="center" border="0" cellpadding="0" cellspacing="0" role="presentation" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt; border-radius: 0; color: #000000; width: 600px; margin: 0 auto;" width="600">
+									<table class="row-content stack" align="center" border="0" cellpadding="0" cellspacing="0" role="presentation" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt; border-radius: 0; color: #000000; width: 700px; margin: 0 auto;" width="700">
 										<tbody>
 											<tr>
-												<td class="column column-1" width="50%" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt; font-weight: 400; text-align: left; vertical-align: top;">
-													<table class="image_block block-1" width="100%" border="0" cellpadding="0" cellspacing="0" role="presentation" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt;">
+												<td class="column column-1" width="100%" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt; font-weight: 400; text-align: left; vertical-align: top;">
+													<div class="spacer_block block-1" style="height:5px;line-height:5px;font-size:1px;">&#8202;</div>
+													<table class="heading_block block-2" width="100%" border="0" cellpadding="0" cellspacing="0" role="presentation" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt;">
 														<tr>
-															<td class="pad" style="width:100%;" align="center">
-																<div class="fullWidth" style="max-width: 240px;"><img src="https://media.beefree.cloud/pub/bfra/nu1w1mkf/2l6/p62/a7k/il_fullxfull.6559378296_frsx.jpg" style="display: block; height: auto; border: 0; width: 100%;" width="240" alt="" title="" height="auto"></div>
+															<td class="pad" style="width:100%;padding-top:10px;padding-bottom:5px;padding-left:10px;padding-right:10px;" align="center">
+																<h3 style="margin: 0; color: #ffffff; direction: ltr; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 34px; font-weight: 700; letter-spacing: -1px; line-height: 1; text-align: center; margin-top: 0; margin-bottom: 0; mso-line-height-alt: 34px;"><span class="tinyMce-placeholder" style="word-break: break-word;">Or design your own perfect sherlock!</span></h3>
 															</td>
 														</tr>
 													</table>
-												</td>
-												<td class="column column-2" width="50%" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt; font-weight: 400; text-align: left; vertical-align: top;">
-													<table width="100%" border="0" cellpadding="0" cellspacing="0" role="presentation" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt;">
+													<table class="button_block block-3" width="100%" border="0" cellpadding="10" cellspacing="0" role="presentation" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt;">
 														<tr>
-															<td class="col-pad" style="padding-right:60px;">
-																<table class="paragraph_block block-1" width="100%" border="0" cellpadding="0" cellspacing="0" role="presentation" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt; word-break: break-word;">
-																	<tr>
-																		<td class="pad" style="padding-bottom:10px;">
-																			<div style="color:#333333;direction:ltr;font-family:Arial, 'Helvetica Neue', Helvetica, sans-serif;font-size:14px;font-weight:400;letter-spacing:2px;line-height:1.2;text-align:left;mso-line-height-alt:17px;">&nbsp;</div>
-																		</td>
-																	</tr>
-																</table>
-																<table class="heading_block block-2" width="100%" border="0" cellpadding="0" cellspacing="0" role="presentation" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt;">
-																	<tr>
-																		<td class="pad" style="width:100%;padding-top:10px;padding-bottom:10px;" align="center">
-																			<h2 style="margin: 0; color: #000; direction: ltr; font-family: 'Inter Tight','Arial'; font-size: 18px; font-weight: 600; letter-spacing: normal; line-height: 1.2; text-align: left; margin-top: 0; margin-bottom: 0; mso-line-height-alt: 22px;"><span class="tinyMce-placeholder" style="word-break: break-word;">Stylish Pipes with Murine Images!</span></h2>
-																		</td>
-																	</tr>
-																</table>
-																<table class="paragraph_block block-3" width="100%" border="0" cellpadding="0" cellspacing="0" role="presentation" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt; word-break: break-word;">
-																	<tr>
-																		<td class="pad" style="padding-top:10px;padding-bottom:10px;">
-																			<div style="color:#333333;direction:ltr;font-family:Arial, 'Helvetica Neue', Helvetica, sans-serif;font-size:14px;font-weight:400;letter-spacing:0px;line-height:1.5;text-align:left;mso-line-height-alt:21px;">
-																				<p style="margin: 0;">Nice large pipes with a ton of different murine images to choose from, including sports themes, music, nature etc.&nbsp; Inquire about what we have.&nbsp; If we don't have it, we will try to track some down for you!</p>
-																			</div>
-																		</td>
-																	</tr>
-																</table>
-																<table class="button_block block-4" width="100%" border="0" cellpadding="0" cellspacing="0" role="presentation" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt;">
-																	<tr>
-																		<td class="pad" style="padding-top:10px;padding-bottom:10px;" align="left"><a href="https://synthesisglass.com/glass" target="_blank" style="color:#000;text-decoration:none;"><!--[if mso]>
-<v:roundrect xmlns:v="urn:schemas-microsoft-com:vml" xmlns:w="urn:schemas-microsoft-com:office:word"  href="https://synthesisglass.com/glass"  style="height:44px;width:106px;v-text-anchor:middle;" arcsize="0%" fill="false">
-<v:stroke dashstyle="Solid" weight="1px" color="#000"/>
+															<td class="pad" align="center"><a href="https://synthesisglass.com/glass" target="_blank" style="color:#ffffff;text-decoration:none;"><!--[if mso]>
+<v:roundrect xmlns:v="urn:schemas-microsoft-com:vml" xmlns:w="urn:schemas-microsoft-com:office:word"  href="https://synthesisglass.com/glass"  style="height:42px;width:116px;v-text-anchor:middle;" arcsize="10%" fillcolor="#7747FF">
+<v:stroke dashstyle="Solid" weight="0px" color="#7747FF"/>
 <w:anchorlock/>
 <v:textbox inset="0px,0px,0px,0px">
-<center dir="false" style="color:#000;font-family:sans-serif;font-size:12px">
-<![endif]--><span class="button" style="background-color: transparent; border-bottom: 1px solid #000; border-left: 1px solid #000; border-radius: 0px; border-right: 1px solid #000; border-top: 1px solid #000; color: #000; display: inline-block; font-family: 'Inter Tight','Arial'; font-size: 12px; font-weight: 600; mso-border-alt: none; text-align: center; width: 45%; word-break: keep-all; letter-spacing: normal;"><span class="btn-pad" style="word-break: break-word; padding-left: 20px; padding-right: 20px; padding-top: 10px; padding-bottom: 10px; display: block;"><span style="word-break: break-word; line-height: 24px;">Shop Now</span></span></span><!--[if mso]></center></v:textbox></v:roundrect><![endif]--></a></td>
-																	</tr>
-																</table>
-															</td>
+<center dir="false" style="color:#ffffff;font-family:sans-serif;font-size:16px">
+<![endif]--><span class="button" style="background-color: #7747FF; border-bottom: 0px solid transparent; border-left: 0px solid transparent; border-radius: 4px; border-right: 0px solid transparent; border-top: 0px solid transparent; color: #ffffff; display: inline-block; font-family: Helvetica Neue, Helvetica, Arial, sans-serif; font-size: 16px; font-weight: 400; mso-border-alt: none; text-align: center; width: auto; word-break: keep-all; letter-spacing: normal;"><span class="btn-pad" style="word-break: break-word; padding-left: 20px; padding-right: 20px; padding-top: 5px; padding-bottom: 5px; display: block;"><span style="word-break: break-word; line-height: 32px;">Shop now!</span></span></span><!--[if mso]></center></v:textbox></v:roundrect><![endif]--></a></td>
 														</tr>
 													</table>
+													<div class="spacer_block block-4" style="height:10px;line-height:10px;font-size:1px;">&#8202;</div>
 												</td>
 											</tr>
 										</tbody>
@@ -607,20 +496,11 @@
 						<tbody>
 							<tr>
 								<td>
-									<table class="row-content stack" align="center" border="0" cellpadding="0" cellspacing="0" role="presentation" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt; border-radius: 0; color: #000000; width: 600px; margin: 0 auto;" width="600">
+									<table class="row-content stack" align="center" border="0" cellpadding="0" cellspacing="0" role="presentation" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt; border-radius: 0; color: #000000; width: 700px; margin: 0 auto;" width="700">
 										<tbody>
 											<tr>
 												<td class="column column-1" width="100%" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt; font-weight: 400; text-align: left; vertical-align: top;">
-													<div class="spacer_block block-1" style="height:40px;line-height:40px;font-size:1px;">&#8202;</div>
-													<table class="paragraph_block block-2" width="100%" border="0" cellpadding="10" cellspacing="0" role="presentation" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt; word-break: break-word;">
-														<tr>
-															<td class="pad">
-																<div style="color:#000;direction:ltr;font-family:Arial, 'Helvetica Neue', Helvetica, sans-serif;font-size:18px;font-weight:400;letter-spacing:0px;line-height:1.5;text-align:center;mso-line-height-alt:27px;">
-																	<p style="margin: 0;">Plus tons more!! Ask us about any customization or design your own dream piece!&nbsp;&nbsp;</p>
-																</div>
-															</td>
-														</tr>
-													</table>
+													<div class="spacer_block block-1" style="height:5px;line-height:5px;font-size:1px;">&#8202;</div>
 												</td>
 											</tr>
 										</tbody>
@@ -633,85 +513,37 @@
 						<tbody>
 							<tr>
 								<td>
-									<table class="row-content stack" align="center" border="0" cellpadding="0" cellspacing="0" role="presentation" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt; border-radius: 0; color: #000000; width: 600px; margin: 0 auto;" width="600">
-										<tbody>
-											<tr>
-												<td class="column column-1" width="100%" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt; font-weight: 400; text-align: left; vertical-align: top;">
-													<table width="100%" border="0" cellpadding="0" cellspacing="0" role="presentation" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt;">
-														<tr>
-															<td class="col-pad" style="padding-bottom:5px;padding-left:20px;padding-right:20px;padding-top:5px;">
-																<table class="image_block block-1" width="100%" border="0" cellpadding="0" cellspacing="0" role="presentation" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt;">
-																	<tr>
-																		<td class="pad" style="width:100%;" align="center">
-																			<div style="max-width: 560px;"><a href="https://synthesisglass.com" target="_blank"><img src="https://media.beefree.cloud/pub/bfra/nu1w1mkf/wtq/msd/t1i/de0befea-4a95-909e-f10c-c3731bea2cbd.jpg" style="display: block; height: auto; border: 0; width: 100%;" width="560" alt="" title="" height="auto"></a></div>
-																		</td>
-																	</tr>
-																</table>
-																<div class="spacer_block block-2" style="height:20px;line-height:20px;font-size:1px;">&#8202;</div>
-																<table class="paragraph_block block-3" width="100%" border="0" cellpadding="0" cellspacing="0" role="presentation" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt; word-break: break-word;">
-																	<tr>
-																		<td class="pad" style="padding-top:10px;padding-bottom:10px;">
-																			<div style="color:#000;direction:ltr;font-family:Arial, 'Helvetica Neue', Helvetica, sans-serif;font-size:14px;font-weight:400;letter-spacing:0px;line-height:1.5;text-align:center;mso-line-height-alt:21px;">
-																				<p style="margin: 0;">©️2026 Synthesis Glass<br>Portland, Oregon</p>
-																			</div>
-																		</td>
-																	</tr>
-																</table>
-																<div class="spacer_block block-4" style="height:25px;line-height:25px;font-size:1px;">&#8202;</div>
-																<table class="icons_block block-5" width="100%" border="0" cellpadding="0" cellspacing="0" role="presentation" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt; text-align: center; line-height: 0;">
-																	<tr>
-																		<td class="pad" style="vertical-align: middle; color: #000000; font-family: inherit; font-size: 14px; font-weight: 400;" align="center">
-																			<table class="icons-outer" cellpadding="0" cellspacing="0" role="presentation" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt; display: inline-table;">
-																				<tr>
-																					<td style="vertical-align: middle; text-align: center; padding-top: 5px; padding-bottom: 5px; padding-left: 5px; padding-right: 20px;"><a href="https://www.instagram.com/synthesis_glass/" target="_blank" title="" style="text-decoration: none;"><img class="icon" src="https://d1oco4z2z1fhwp.cloudfront.net/templates/default/9196/Group_289845.png" alt="" height="auto" width="32" align="center" style="display: block; height: auto; margin: 0 auto; border: 0;"></a></td>
-																				</tr>
-																			</table>
-																		</td>
-																	</tr>
-																</table>
-																<div class="spacer_block block-6" style="height:20px;line-height:20px;font-size:1px;">&#8202;</div>
-																<table class="paragraph_block block-7" width="100%" border="0" cellpadding="10" cellspacing="0" role="presentation" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt; word-break: break-word;">
-																	<tr>
-																		<td class="pad">
-																			<div style="color:#000;direction:ltr;font-family:Arial, 'Helvetica Neue', Helvetica, sans-serif;font-size:12px;font-weight:400;letter-spacing:0px;line-height:1.5;text-align:center;mso-line-height-alt:18px;">
-																				<p style="margin: 0;"><a href=" https://synthesisglass.com/unsubscribe?email={{EMAIL}}" target="_blank" style="text-decoration: underline; color: #000;" rel="noopener">Unsubscribe</a></p>
-																			</div>
-																		</td>
-																	</tr>
-																</table>
-																<div class="spacer_block block-8" style="height:20px;line-height:20px;font-size:1px;">&#8202;</div>
-															</td>
-														</tr>
-													</table>
-												</td>
-											</tr>
-										</tbody>
-									</table>
-								</td>
-							</tr>
-						</tbody>
-					</table>
-					<table class="row row-12" align="center" width="100%" border="0" cellpadding="0" cellspacing="0" role="presentation" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt; background-color: #ffffff;">
-						<tbody>
-							<tr>
-								<td>
-									<table class="row-content stack" align="center" border="0" cellpadding="0" cellspacing="0" role="presentation" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt; background-color: #ffffff; color: #000000; width: 600px; margin: 0 auto;" width="600">
+									<table class="row-content stack" align="center" border="0" cellpadding="0" cellspacing="0" role="presentation" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt; background-color: #160b34; border-radius: 20px 20px 0 0; color: #000000; width: 700px; margin: 0 auto;" width="700">
 										<tbody>
 											<tr>
 												<td class="column column-1" width="100%" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt; font-weight: 400; text-align: left; vertical-align: top;">
 													<table width="100%" border="0" cellpadding="0" cellspacing="0" role="presentation" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt;">
 														<tr>
 															<td class="col-pad" style="padding-bottom:5px;padding-top:5px;">
-																<table class="icons_block block-1" width="100%" border="0" cellpadding="0" cellspacing="0" role="presentation" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt; text-align: center; line-height: 0;">
+																<table class="social_block block-1" width="100%" border="0" cellpadding="10" cellspacing="0" role="presentation" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt;">
 																	<tr>
-																		<td class="pad" style="vertical-align: middle; color: #1e0e4b; font-family: 'Inter', sans-serif; font-size: 15px; padding-top: 5px; padding-bottom: 5px;" align="center"><!--[if vml]><table align="center" cellpadding="0" cellspacing="0" role="presentation" style="display:inline-block;padding-left:0px;padding-right:0px;mso-table-lspace: 0pt;mso-table-rspace: 0pt;" ><![endif]-->
-																			<!--[if !vml]><!-->
-																			<table class="icons-inner" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt; display: inline-block; padding-left: 0px; padding-right: 0px;" cellpadding="0" cellspacing="0" role="presentation"><!--<![endif]-->
+																		<td class="pad" align="center">
+																			<table class="social-table" width="32px" border="0" cellpadding="0" cellspacing="0" role="presentation" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt;">
 																				<tr>
-																					<td style="vertical-align: middle; text-align: center; padding-top: 5px; padding-bottom: 5px; padding-left: 5px; padding-right: 6px;"><a href="https://designedwithbeefree.com/" target="_blank" title="Designed with Beefree" style="text-decoration: none;"><img class="icon" alt="Beefree Logo" src="https://d1oco4z2z1fhwp.cloudfront.net/assets/Beefree-logo.png" height="auto" width="33.6" align="center" style="display: block; height: auto; margin: 0 auto; border: 0;"></a></td>
-																					<td style="font-family: 'Inter', sans-serif; font-size: 15px; font-weight: undefined; color: #1e0e4b; vertical-align: middle; letter-spacing: normal; text-align: center; line-height: normal;"><a href="https://designedwithbeefree.com/" target="_blank" title="Designed with Beefree" style="color: #1e0e4b; text-decoration: none;">Designed with Beefree</a></td>
+																					<td style="padding:0 0 0 0px;"><a href="https://www.instagram.com/synthesis_glass/" target="_blank"><img src="https://app-rsrc.getbee.io/public/resources/social-networks-icon-sets/t-circle-white/instagram@2x.png" width="32" height="auto" alt="Instagram" title="instagram" style="display: block; height: auto; border: 0;"></a></td>
 																				</tr>
 																			</table>
+																		</td>
+																	</tr>
+																</table>
+																<table class="paragraph_block block-2" width="100%" border="0" cellpadding="0" cellspacing="0" role="presentation" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt; word-break: break-word;">
+																	<tr>
+																		<td class="pad" style="padding-top:25px;padding-bottom:25px;padding-left:60px;padding-right:60px;">
+																			<div style="color:#ffffff;direction:ltr;font-family:'Helvetica Neue', Helvetica, Arial, sans-serif;font-size:16px;font-weight:400;letter-spacing:0px;line-height:1.2;text-align:center;mso-line-height-alt:19px;">
+																				<p style="margin: 0;">&nbsp;<a href="https://synthesisglass.com/unsubscribe?email={{EMAIL}}" target="_blank" style="text-decoration: underline; color: #ffffff;" rel="noopener"><u>Unsubscribe</u></a><br><br>Synthesis Glass, Portland Oregon</p>
+																			</div>
+																		</td>
+																	</tr>
+																</table>
+																<table class="image_block block-3" width="100%" border="0" cellpadding="0" cellspacing="0" role="presentation" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt;">
+																	<tr>
+																		<td class="pad" style="width:100%;" align="center">
+																			<div class="fullWidth" style="max-width: 374px;"><a href="https://synthesisglass.com" target="_blank"><img src="https://media.beefree.cloud/pub/bfra/nu1w1mkf/6wj/3i3/xkl/hatgraphicback_2.jpg" style="display: block; height: auto; border: 0; width: 100%;" width="374" alt="Logo with a white text on a black background" title="Logo with a white text on a black background" height="auto"></a></div>
 																		</td>
 																	</tr>
 																</table>
