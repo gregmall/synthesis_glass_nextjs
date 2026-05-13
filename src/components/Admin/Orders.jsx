@@ -12,13 +12,12 @@ function CustomerCard({ customer, onComplete }) {
       {customer.history?.items.map((item, idx) => (
         <div key={idx} className='flex flex-col'>
           <div className='w-1/2'>{item.name}</div>
-          <div className='w-1/4'><img src={item.image[0]} alt={item.name} className='w-16 h-16 object-cover' /></div>
+          <a href={`item/${item.id}`}><div className='w-1/4'><img src={item.image[0]} alt={item.name} className='w-16 h-16 object-cover' /></div></a>
         </div>
       ))}
       <div>Total: ${customer.history ? customer.history.total : '0'}</div>
       <div>Message: {customer.message}</div>
       <div>Address: {customer.address.street}</div>
-      <div>Apartment: {customer.address.apartment}</div>
       <div>City: {customer.address.city}</div>
       <div>State: {customer.address.state}</div>
       <div>Zip: {customer.address.zip}</div>
