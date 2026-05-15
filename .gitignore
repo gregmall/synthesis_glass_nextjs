@@ -30,6 +30,7 @@
 .DS_Store
 package-lock.json
 emails.json
+public/assets/EmailTemplate.html
 
 # logs
 npm-debug.log*
