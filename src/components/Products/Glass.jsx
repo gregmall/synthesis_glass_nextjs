@@ -75,6 +75,11 @@ const Glass = () => {
     if (e.key === 'Enter') onSearchSubmit();
   }, [onSearchSubmit]);
 
+  const clearAll = useCallback(() => {
+    setInputValue('');
+    setParam({ search: null, filter: null, page: null });
+  }, [setParam]);
+
   const handleFilterChange = useCallback((value) => {
     setParam({ filter: value, page: null });
   }, [setParam]);
@@ -124,14 +129,24 @@ const Glass = () => {
       <div className='sticky top-16 z-40 bg-gradient-to-r from-[#762a99] to-[#7c0747] shadow-md px-4 py-3'>
         <div className='max-w-7xl mx-auto flex flex-col sm:flex-row items-center gap-3'>
           <div className='flex items-center gap-2 w-full sm:w-auto'>
-            <div className='w-full sm:w-72 bg-white rounded-lg p-1'>
+            <div className='w-full sm:w-72 bg-white rounded-lg p-1 relative'>
               <Input
                 label="Search items..."
                 value={inputValue}
                 placeholder="Search by type, color, theme, etc..."
                 onChange={e => setInputValue(e.target.value)}
                 onKeyDown={onKeyDown}
+                className="pr-8 bg-white"
               />
+              {(inputValue || filtered) && (
+                <button
+                  type="button"
+                  onClick={clearAll}
+                  className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-700 font-bold text-sm leading-none"
+                >
+                  ✕
+                </button>
+              )}
             </div>
             <Button color="blue" onClick={onSearchSubmit}>Search</Button>
           </div>
