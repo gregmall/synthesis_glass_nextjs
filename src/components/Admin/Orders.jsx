@@ -19,6 +19,7 @@ function CustomerCard({ customer, onComplete }) {
       <div>Message: {customer.message}</div>
       <div>Address: {customer.address.street}</div>
       <div>City: {customer.address.city}</div>
+      <div>Apt/Ste/Unit: {customer.address.apartment}</div>
       <div>State: {customer.address.state}</div>
       <div>Zip: {customer.address.zip}</div>
       <div className='border-b-2 mb-8 text-teal-500 flex items-center justify-between'>
