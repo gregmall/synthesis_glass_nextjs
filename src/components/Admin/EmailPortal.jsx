@@ -78,8 +78,8 @@ useEffect(() => {
     const CONCURRENCY = 10
     const failures = []
 
-    for (let i = 0; i < emailTest.length; i += CONCURRENCY) {
-      const batch = emailTest.slice(i, i + CONCURRENCY)
+    for (let i = 0; i < emailFile.length; i += CONCURRENCY) {
+      const batch = emailFile.slice(i, i + CONCURRENCY)
       const results = await Promise.allSettled(
         batch.map(mailRecipient =>
           sendEmail({
@@ -100,7 +100,7 @@ useEffect(() => {
 
     setEmailStatus(
       failures.length > 0
-        ? `Batch complete. ${emailTest.length - failures.length}/${emailTest.length} sent. Failed: ${failures.join(', ')}`
+        ? `Batch complete. ${emailFile.length - failures.length}/${emailFile.length} sent. Failed: ${failures.join(', ')}`
         : 'Batch email sending completed!'
     )
     setLoading(false)
